@@ -84,14 +84,18 @@ void IG2App::setupScene(void)
   //mLightNode = mCamNode->createChildSceneNode("nLuz");
   mLightNode->attachObject(luz);
 
-  mLightNode->setDirection(Ogre::Vector3(0, 0, -1));  //vec3.normalise();
+  mLightNode->setDirection(Ogre::Vector3(0, 0.1, -1));  //vec3.normalise();
   //lightNode->setPosition(0, 0, 1000);
  
   //------------------------------------------------------------------------
 
   // finally something to render
 
-  Ogre::Entity* ent = mSM->createEntity("Sinbad.mesh");
+  //Ogre::Entity* ent = mSM->createEntity("Sword.mesh");
+  //Ogre::Entity* ent = mSM->createEntity("Sinbad.mesh");
+  //Ogre::Entity* ent = mSM->createEntity("DamagedHelmet.mesh");
+  //Ogre::Entity* ent = mSM->createEntity("ogrehead.mesh");
+  Ogre::Entity* ent = mSM->createEntity("facial.mesh");
 
   mSinbadNode = mSM->getRootSceneNode()->createChildSceneNode("nSinbad");
   mSinbadNode->attachObject(ent);
