@@ -13,7 +13,8 @@ class IG2App : public  OgreBites::IG2ApplicationContext, OgreBites::InputListene
 public:
   explicit IG2App() : IG2ApplicationContext("IG2App") { };  // new -> setup()  
   virtual ~IG2App() { };   // delete -> shutdown()  
- 
+  void setScene(int scene = 0) { sceneId = scene; };
+
 protected:
   virtual void setup();
   virtual void shutdown();
@@ -27,7 +28,12 @@ protected:
   Ogre::SceneNode* mCamNode = nullptr;
   Ogre::SceneNode* mSinbadNode = nullptr;
   OgreBites::CameraMan* mCamMgr = nullptr;
- 
+
+private:
+    int sceneId = 0;
+    void scene0();
+    void scene1();
+    void scene2();
 };
 
 #endif

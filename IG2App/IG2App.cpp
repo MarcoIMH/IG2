@@ -70,7 +70,7 @@ void IG2App::setupScene(void)
   
   // and tell it to render into the main window
   Viewport* vp = getRenderWindow()->addViewport(cam);
-  //vp->setBackgroundColour(Ogre::ColourValue(1, 1, 1));
+  vp->setBackgroundColour(Ogre::ColourValue(0.7, 0.8, 0.9));    //Scene background color
 
   //------------------------------------------------------------------------
 
@@ -93,17 +93,11 @@ void IG2App::setupScene(void)
 
   // finally something to render
 
-  //Ogre::Entity* ent = mSM->createEntity("Sword.mesh");
-  //Ogre::Entity* ent = mSM->createEntity("Sinbad.mesh");
+  //Ogre::Entity* ent = mSM->createEntity("Sword.mesh");  
   //Ogre::Entity* ent = mSM->createEntity("DamagedHelmet.mesh");
-  //Ogre::Entity* ent = mSM->createEntity("ogrehead.mesh");
-  Ogre::Entity* ent = mSM->createEntity("facial.mesh");
+  //Ogre::Entity* ent = mSM->createEntity("ogrehead.mesh");    
 
-  mSinbadNode = mSM->getRootSceneNode()->createChildSceneNode("nSinbad");
-  mSinbadNode->attachObject(ent);
-
-  //mSinbadNode->setPosition(400, 100, -300);
-  mSinbadNode->setScale(20, 20, 20);
+  //mSinbadNode->setScale(20, 20, 20);
   //mSinbadNode->yaw(Ogre::Degree(-45));
   //mSinbadNode->showBoundingBox(true);
   //mSinbadNode->setVisible(false);
@@ -118,6 +112,49 @@ void IG2App::setupScene(void)
   //mCamMgr->setYawPitchDist(Radian(0), Degree(30), 100);
 
   //------------------------------------------------------------------------
-
+  setScene(1);
+  switch (sceneId) {
+  case 0: scene0(); break;
+  case 1: scene1(); break;
+  case 2: scene2(); break;
+  }
 }
+//------------------------------------------------------------------------
+void IG2App::scene0()
+{
+    //ROMAN BATHROOM
+    Ogre::Entity* bathFloor = mSM->createEntity("RomanBathLower.mesh");
+    Ogre::Entity* bathUpper = mSM->createEntity("RomanBathUpper.mesh");
+    Ogre::Entity* columns = mSM->createEntity("Columns.mesh");
 
+    Ogre::SceneNode* bathNode = mSM->getRootSceneNode()->createChildSceneNode("bath");
+    bathNode->createChildSceneNode("bathUpper")->attachObject(bathUpper);
+    bathNode->createChildSceneNode("bathFloor")->attachObject(bathFloor);
+    bathNode->createChildSceneNode("columns")->attachObject(columns);
+
+    bathNode->setScale(0.1f, 0.1f, 0.1f);
+
+    //DRAGON
+    Ogre::Entity* dragon = mSM->createEntity("dragon.mesh");
+    Ogre::SceneNode* dragonNode = mSM->getRootSceneNode()->createChildSceneNode("dragon");
+    dragonNode->attachObject(dragon);
+    dragonNode->setScale(0.1f, 0.1f, 0.1f);
+    dragonNode->setPosition(0, 10, 0);
+
+
+    //SINBAD
+    Ogre::Entity* ent = mSM->createEntity("Sinbad.mesh");
+    mSinbadNode = mSM->getRootSceneNode()->createChildSceneNode("nSinbad");
+    mSinbadNode->attachObject(ent);
+    mSinbadNode->setScale(2, 2, 2);
+    mSinbadNode->setPosition(0, 2, 0);
+}
+//------------------------------------------------------------------------
+void IG2App::scene1()
+{
+}
+//------------------------------------------------------------------------
+void IG2App::scene2()
+{
+}
+//------------------------------------------------------------------------

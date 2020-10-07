@@ -33,7 +33,7 @@ namespace OgreBites {
 		mFSLayer = new Ogre::FileSystemLayer(mAppName);
 		mRoot = nullptr;
 		mOverlaySystem = nullptr;
-		mFirstRun = true;
+		mFirstRun = true;		
 
 		mShaderGenerator = nullptr;
 		mMaterialMgrListener = nullptr;
