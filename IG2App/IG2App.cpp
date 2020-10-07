@@ -157,24 +157,49 @@ void IG2App::scene1()   //Ejercicio15
     
     Ogre::SceneNode* clockNode = mSM->getRootSceneNode()->createChildSceneNode("clock");
 
+    int lenght = 90;
     float ang = 360 / 12;
-    for (int x = 1; x <= 12; x++) {
+    for (int x = 1; x <= 12; x++) {     //Bolas horas de reloj
         Ogre::Entity* sphere = mSM->createEntity("sphere.mesh"); 
         sphereVector.push_back(clockNode->createChildSceneNode("hora" + std::to_string(x)));
         sphereVector.back()->attachObject(sphere);
         
-        sphereVector.back()->setPosition(90 * Ogre::Math::Cos(Ogre::Degree(90 - x * ang)), 
-                                         90 * Ogre::Math::Sin(Ogre::Degree(90 - x * ang)), 0);
+        sphereVector.back()->setPosition(lenght * Ogre::Math::Cos(Ogre::Degree(90 - x * ang)),
+                                        lenght * Ogre::Math::Sin(Ogre::Degree(90 - x * ang)), 0);
+
+        sphereVector.back()->setScale(0.1f, 0.1f, 0.1f);
     }      
 
-    for (int x = 1; x <= 12; x++) {
+    /*for (int x = 1; x <= 12; x++) {
             Ogre::SceneNode* node = mSM->getSceneNode("hora" + std::to_string(x));
         if (x % 2 == 0) {
             node->setScale(0.05f, 0.05f, 0.05f);
         }
         else
             node->setScale(0.1f, 0.1f, 0.1f);
-    }
+    }*/
+
+    //Manecillas
+    Ogre::Entity* entity = mSM->createEntity("cube.mesh");
+    clockNode->createChildSceneNode("segundero")->attachObject(entity);
+
+    entity = mSM->createEntity("cube.mesh");
+    clockNode->createChildSceneNode("minutero")->attachObject(entity);
+
+    entity = mSM->createEntity("cube.mesh");
+    clockNode->createChildSceneNode("hora")->attachObject(entity);
+
+    //Transformaciones
+    mSM->getSceneNode("hora")->setScale(0.05f, 0.5f, 0.05f);
+    mSM->getSceneNode("hora")->roll(Ogre::Degree(-90));
+    mSM->getSceneNode("hora")->setPosition((lenght / 4) * Ogre::Math::Cos(Ogre::Degree(0)), (lenght / 4) * Ogre::Math::Sin(Ogre::Degree(0)), 0);
+
+    mSM->getSceneNode("minutero")->setScale(0.03f, 0.7f, 0.03f);
+    mSM->getSceneNode("minutero")->setPosition((lenght / 4) * Ogre::Math::Cos(Ogre::Degree(90)), (lenght / 4) * Ogre::Math::Sin(Ogre::Degree(90)), 0);
+
+    mSM->getSceneNode("segundero")->setScale(0.01f, 0.8f, 0.01f);
+    mSM->getSceneNode("segundero")->roll(Ogre::Degree(-180));
+    mSM->getSceneNode("segundero")->setPosition((lenght / 4) * Ogre::Math::Cos(Ogre::Degree(-90)), (lenght / 4) * Ogre::Math::Sin(Ogre::Degree(-90)), 0);
 }
 //------------------------------------------------------------------------
 void IG2App::scene2()
