@@ -165,12 +165,16 @@ void IG2App::scene1()   //Ejercicio15
         
         sphereVector.back()->setPosition(90 * Ogre::Math::Cos(Ogre::Degree(90 - x * ang)), 
                                          90 * Ogre::Math::Sin(Ogre::Degree(90 - x * ang)), 0);
-
-        if(x % 2 == 0)
-            sphereVector.back()->setScale(0.05f, 0.05f, 0.05f);
-        else
-            sphereVector.back()->setScale(0.1f, 0.1f, 0.1f);
     }      
+
+    for (int x = 1; x <= 12; x++) {
+            Ogre::SceneNode* node = mSM->getSceneNode("hora" + std::to_string(x));
+        if (x % 2 == 0) {
+            node->setScale(0.05f, 0.05f, 0.05f);
+        }
+        else
+            node->setScale(0.1f, 0.1f, 0.1f);
+    }
 }
 //------------------------------------------------------------------------
 void IG2App::scene2()
