@@ -13,6 +13,11 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
   {
     getRoot()->queueEndRendering();
   }
+  else if (evt.keysym.sym == SDLK_g) {
+      if (mSM->getSceneNode("clock") != nullptr) {
+          mSM->getSceneNode("clock")->roll(Ogre::Degree(3));    //Rota reloj
+      }
+  }
   //else if (evt.keysym.sym == SDLK_???)
   
   return true;
