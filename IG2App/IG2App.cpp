@@ -210,8 +210,8 @@ void IG2App::scene1()   //Ejercicio15
     mSM->getSceneNode("minutero")->setPosition((lenght / 4) * Ogre::Math::Cos(Ogre::Degree(90)), (lenght / 4) * Ogre::Math::Sin(Ogre::Degree(90)), 0);
 
     mSM->getSceneNode("segundero")->setScale(0.01f, 0.8f, 0.01f);
-    mSM->getSceneNode("segundero")->roll(Ogre::Degree(-180));
-    mSM->getSceneNode("segundero")->setPosition((lenght / 4) * Ogre::Math::Cos(Ogre::Degree(-90)), (lenght / 4) * Ogre::Math::Sin(Ogre::Degree(-90)), 0);
+    mSM->getSceneNode("segundero")->roll(Ogre::Degree(-230));
+    mSM->getSceneNode("segundero")->setPosition((lenght / 4) * Ogre::Math::Cos(Ogre::Degree(-140)), (lenght / 4) * Ogre::Math::Sin(Ogre::Degree(-140)), 0);
 }
 //------------------------------------------------------------------------
 void IG2App::scene2()
