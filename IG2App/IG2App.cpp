@@ -120,7 +120,7 @@ void IG2App::setupScene(void)
   }
 }
 //------------------------------------------------------------------------
-void IG2App::scene0()
+void IG2App::scene0() //Ejercicio 14
 {
     //ROMAN BATHROOM
     Ogre::Entity* bathFloor = mSM->createEntity("RomanBathLower.mesh");
@@ -150,8 +150,22 @@ void IG2App::scene0()
     mSinbadNode->setPosition(0, 2, 0);
 }
 //------------------------------------------------------------------------
-void IG2App::scene1()
-{
+void IG2App::scene1()   //Ejercicio15
+{   
+    std::vector<SceneNode*> sphereVector;
+
+    
+    Ogre::SceneNode* clockNode = mSM->getRootSceneNode()->createChildSceneNode("clock");
+
+    float ang = 360 / 12;
+    for (int x = 0; x < 12; x++) {
+        Ogre::Entity* sphere = mSM->createEntity("sphere.mesh"); 
+        sphereVector.push_back(clockNode->createChildSceneNode("sphere" + std::to_string(x)));
+        sphereVector.back()->attachObject(sphere);
+        sphereVector.back()->setScale(0.1f, 0.1f, 0.1f);
+        sphereVector.back()->setPosition(90 * Ogre::Math::Cos(Ogre::Degree( 0 + x * ang)), 
+                                         90 * Ogre::Math::Sin(Ogre::Degree(0 + x * ang)), 0);
+    }      
 }
 //------------------------------------------------------------------------
 void IG2App::scene2()
