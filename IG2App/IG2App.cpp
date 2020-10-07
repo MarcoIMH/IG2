@@ -158,13 +158,18 @@ void IG2App::scene1()   //Ejercicio15
     Ogre::SceneNode* clockNode = mSM->getRootSceneNode()->createChildSceneNode("clock");
 
     float ang = 360 / 12;
-    for (int x = 0; x < 12; x++) {
+    for (int x = 1; x <= 12; x++) {
         Ogre::Entity* sphere = mSM->createEntity("sphere.mesh"); 
-        sphereVector.push_back(clockNode->createChildSceneNode("sphere" + std::to_string(x)));
+        sphereVector.push_back(clockNode->createChildSceneNode("hora" + std::to_string(x)));
         sphereVector.back()->attachObject(sphere);
-        sphereVector.back()->setScale(0.1f, 0.1f, 0.1f);
-        sphereVector.back()->setPosition(90 * Ogre::Math::Cos(Ogre::Degree( 0 + x * ang)), 
-                                         90 * Ogre::Math::Sin(Ogre::Degree(0 + x * ang)), 0);
+        
+        sphereVector.back()->setPosition(90 * Ogre::Math::Cos(Ogre::Degree(90 - x * ang)), 
+                                         90 * Ogre::Math::Sin(Ogre::Degree(90 - x * ang)), 0);
+
+        if(x % 2 == 0)
+            sphereVector.back()->setScale(0.05f, 0.05f, 0.05f);
+        else
+            sphereVector.back()->setScale(0.1f, 0.1f, 0.1f);
     }      
 }
 //------------------------------------------------------------------------
