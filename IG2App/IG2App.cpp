@@ -14,6 +14,12 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
     getRoot()->queueEndRendering();
   }
   else if (evt.keysym.sym == SDLK_g) {
+      if (mSM->getSceneNode("clock") != nullptr && mSM->getSceneNode("manecillas") != nullptr) {
+          mSM->getSceneNode("clock")->roll(Ogre::Degree(3));    //Rota reloj
+          mSM->getSceneNode("manecillas")->roll(Ogre::Degree(3));    //Rota manecillas
+      }
+  }
+  else if (evt.keysym.sym == SDLK_h) {
       if (mSM->getSceneNode("clock") != nullptr) {
           mSM->getSceneNode("clock")->roll(Ogre::Degree(3));    //Rota reloj
       }
@@ -185,14 +191,15 @@ void IG2App::scene1()   //Ejercicio15
     }*/
 
     //Manecillas
+    Ogre::SceneNode* manecillasNode = mSM->getRootSceneNode()->createChildSceneNode("manecillas");
     Ogre::Entity* entity = mSM->createEntity("cube.mesh");
-    clockNode->createChildSceneNode("segundero")->attachObject(entity);
+    manecillasNode->createChildSceneNode("segundero")->attachObject(entity);
 
     entity = mSM->createEntity("cube.mesh");
-    clockNode->createChildSceneNode("minutero")->attachObject(entity);
+    manecillasNode->createChildSceneNode("minutero")->attachObject(entity);
 
     entity = mSM->createEntity("cube.mesh");
-    clockNode->createChildSceneNode("hora")->attachObject(entity);
+    manecillasNode->createChildSceneNode("hora")->attachObject(entity);
 
     //Transformaciones
     mSM->getSceneNode("hora")->setScale(0.05f, 0.5f, 0.05f);
