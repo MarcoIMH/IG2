@@ -50,6 +50,8 @@ void IG2App::shutdown()
 
   delete mTrayMgr;  mTrayMgr = nullptr;
   delete mCamMgr; mCamMgr = nullptr;
+
+  delete aspasMolino;
   
   // do not forget to call the base 
   IG2ApplicationContext::shutdown();
@@ -235,7 +237,7 @@ void IG2App::scene2()
     //cilindroNode->translate(80, 0, 5);
     //cilindroNode->setScale(1.5f, 4.0f, 1.5f);
 
-    int num = 12;
+    /*int num = 12;
     float ang = 360 / num;
     SceneNode* aspasNode = mSM->getRootSceneNode()->createChildSceneNode("aspas");
     for (int x = 0; x < num; x++) {
@@ -258,6 +260,8 @@ void IG2App::scene2()
 
         aspaNode->roll(Ogre::Degree(x*ang));
         cilindroNode->roll(Ogre::Degree(-x * ang));
-    }
+    }*/
+
+    aspasMolino = new AspasMolino(12, mSM);
 }
 //------------------------------------------------------------------------
