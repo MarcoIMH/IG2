@@ -209,18 +209,42 @@ void IG2App::scene1()   //Ejercicio15
 //------------------------------------------------------------------------
 void IG2App::scene2()
 {
-    SceneNode* aspaNode = mSM->getRootSceneNode()->createChildSceneNode("aspa");
-    SceneNode* tableroNode = aspaNode->createChildSceneNode("tablero");
-    SceneNode* cilindroNode = aspaNode->createChildSceneNode("adorno");
+    //SceneNode* aspaNode = mSM->getRootSceneNode()->createChildSceneNode("aspa");
+    //SceneNode* tableroNode = aspaNode->createChildSceneNode("tablero");
+    //SceneNode* cilindroNode = aspaNode->createChildSceneNode("adorno");
 
-    Ogre::Entity* ent = mSM->createEntity("cube.mesh");
-    tableroNode->attachObject(ent);
-    tableroNode->setScale(1.8f, 0.3f, 0.02f);
-    //tableroNode->translate(10, 10, 10);
+    //Ogre::Entity* ent = mSM->createEntity("cube.mesh");
+    //tableroNode->attachObject(ent);
+    //tableroNode->setScale(1.8f, 0.3f, 0.02f);
+    ////tableroNode->translate(10, 10, 10);
 
-    ent = mSM->createEntity("Barrel.mesh");
-    cilindroNode->attachObject(ent);
-    cilindroNode->translate(80, 0, 5);
-    cilindroNode->setScale(1.5f, 4.0f, 1.5f);
+    //ent = mSM->createEntity("Barrel.mesh");
+    //cilindroNode->attachObject(ent);
+    //cilindroNode->translate(80, 0, 5);
+    //cilindroNode->setScale(1.5f, 4.0f, 1.5f);
+
+    int num = 12;
+    float ang = 360 / num;
+    for (int x = 0; x < num; x++) {
+        SceneNode* aspaNode = mSM->getRootSceneNode()->createChildSceneNode("aspas_"+std::to_string(x+1));
+        SceneNode* tableroNode = aspaNode->createChildSceneNode("tablero_" + std::to_string(x+1));
+        SceneNode* cilindroNode = aspaNode->createChildSceneNode("adorno_" + std::to_string(x+1));
+
+        Ogre::Entity* ent = mSM->createEntity("cube.mesh");
+        tableroNode->attachObject(ent);
+        tableroNode->setScale(1.6f, 0.4f, 0.02f);
+        
+        ent = mSM->createEntity("Barrel.mesh");
+        cilindroNode->attachObject(ent);
+        cilindroNode->translate(60, 0, 5);
+        cilindroNode->setScale(1.5f, 4.0f, 1.5f);
+        
+
+        aspaNode->setPosition( 80* Ogre::Math::Cos(Ogre::Degree(x * ang)),
+            80 * Ogre::Math::Sin(Ogre::Degree(x * ang)), 0);
+
+        aspaNode->roll(Ogre::Degree(x*ang));
+        cilindroNode->roll(Ogre::Degree(-x * ang));
+    }
 }
 //------------------------------------------------------------------------
