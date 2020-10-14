@@ -104,14 +104,7 @@ void IG2App::setupScene(void)
 
   // finally something to render
 
-  //Ogre::Entity* ent = mSM->createEntity("Sword.mesh");  
-  //Ogre::Entity* ent = mSM->createEntity("DamagedHelmet.mesh");
-  //Ogre::Entity* ent = mSM->createEntity("ogrehead.mesh");    
 
-  //mSinbadNode->setScale(20, 20, 20);
-  //mSinbadNode->yaw(Ogre::Degree(-45));
-  //mSinbadNode->showBoundingBox(true);
-  //mSinbadNode->setVisible(false);
 
   //------------------------------------------------------------------------
 
@@ -123,7 +116,7 @@ void IG2App::setupScene(void)
   //mCamMgr->setYawPitchDist(Radian(0), Degree(30), 100);
 
   //------------------------------------------------------------------------
-  setScene(1);
+  setScene(2);
   switch (sceneId) {
   case 0: scene0(); break;
   case 1: scene1(); break;
@@ -216,5 +209,18 @@ void IG2App::scene1()   //Ejercicio15
 //------------------------------------------------------------------------
 void IG2App::scene2()
 {
+    SceneNode* aspaNode = mSM->getRootSceneNode()->createChildSceneNode("aspa");
+    SceneNode* tableroNode = aspaNode->createChildSceneNode("tablero");
+    SceneNode* cilindroNode = aspaNode->createChildSceneNode("adorno");
+
+    Ogre::Entity* ent = mSM->createEntity("cube.mesh");
+    tableroNode->attachObject(ent);
+    tableroNode->setScale(1.8f, 0.3f, 0.02f);
+    //tableroNode->translate(10, 10, 10);
+
+    ent = mSM->createEntity("Barrel.mesh");
+    cilindroNode->attachObject(ent);
+    cilindroNode->translate(80, 0, 5);
+    cilindroNode->setScale(1.5f, 4.0f, 1.5f);
 }
 //------------------------------------------------------------------------
