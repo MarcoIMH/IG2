@@ -18,18 +18,6 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
           mSM->getSceneNode("clock")->roll(Ogre::Degree(3));    //Rota reloj
           mSM->getSceneNode("manecillas")->roll(Ogre::Degree(3));    //Rota manecillas
       }
-      else if (sceneId == 2) {
-          
-          SceneNode* apNode = mSM->getSceneNode("aspas");
-          apNode->roll(Ogre::Degree(3));
-          
-          int cont = 1;
-          while (cont <= sc2Numaspas) {              
-              SceneNode* aNode = mSM->getSceneNode("adorno_" + std::to_string(cont));
-              aNode->roll(Ogre::Degree(-3));      
-              cont++;
-          }
-      }
   }
   else if (evt.keysym.sym == SDLK_h) {
       if (mSM->getSceneNode("clock") != nullptr) {
@@ -262,6 +250,7 @@ void IG2App::scene2()
         cilindroNode->roll(Ogre::Degree(-x * ang));
     }*/
 
-    aspasMolino = new AspasMolino(12, mSM);
+    aspasMolino = new AspasMolino(12, mSM, this);
+    addInputListener(aspasMolino);
 }
 //------------------------------------------------------------------------

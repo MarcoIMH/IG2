@@ -1,6 +1,7 @@
 #include "AspasMolino.h"
+#include "IG2App.h"
 
-AspasMolino::AspasMolino(int numAspas_, SceneManager* sMG_) :
+AspasMolino::AspasMolino(int numAspas_, SceneManager* sMG_, IG2App *igApp) :
 	numAspas(numAspas_)
 {
     arrayAspas = new Aspa * [numAspas];
@@ -13,6 +14,7 @@ AspasMolino::AspasMolino(int numAspas_, SceneManager* sMG_) :
         SceneNode* cilindroNode = aspaNode->createChildSceneNode("adorno_" + std::to_string(x + 1));
 
         arrayAspas[x] = new Aspa(sMG_, aspaNode, tableroNode, cilindroNode);
+        igApp->addInputListener(arrayAspas[x]);
 
         aspaNode->setPosition(80 * Ogre::Math::Cos(Ogre::Degree(x * ang)),
             80 * Ogre::Math::Sin(Ogre::Degree(x * ang)), 0);
