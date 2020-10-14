@@ -14,21 +14,20 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
     getRoot()->queueEndRendering();
   }
   else if (evt.keysym.sym == SDLK_g) {
-      if (mSM->getSceneNode("clock") != nullptr && mSM->getSceneNode("manecillas") != nullptr) {
+      if (sceneId == 1) {
           mSM->getSceneNode("clock")->roll(Ogre::Degree(3));    //Rota reloj
           mSM->getSceneNode("manecillas")->roll(Ogre::Degree(3));    //Rota manecillas
       }
-      if (mSM->getSceneNode("aspas") != nullptr) {
+      else if (sceneId == 2) {
           
           SceneNode* apNode = mSM->getSceneNode("aspas");
           apNode->roll(Ogre::Degree(3));
           
           int cont = 1;
-          SceneNode* aNode = mSM->getSceneNode("adorno_" + std::to_string(cont));
-          while (aNode != nullptr) {              
-              aNode->roll(Ogre::Degree(-3));
+          while (cont <= sc2Numaspas) {              
+              SceneNode* aNode = mSM->getSceneNode("adorno_" + std::to_string(cont));
+              aNode->roll(Ogre::Degree(-3));      
               cont++;
-              aNode = mSM->getSceneNode("adorno_" + std::to_string(cont));
           }
       }
   }

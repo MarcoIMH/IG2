@@ -34,6 +34,7 @@ private:
     void scene0();
     void scene1();
     void scene2();
+    int sc2Numaspas = 12;
 };
 
 #endif
