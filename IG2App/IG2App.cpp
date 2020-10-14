@@ -13,6 +13,17 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
   {
     getRoot()->queueEndRendering();
   }
+  else if (evt.keysym.sym == SDLK_g) {
+      if (mSM->getSceneNode("clock") != nullptr && mSM->getSceneNode("manecillas") != nullptr) {
+          mSM->getSceneNode("clock")->roll(Ogre::Degree(3));    //Rota reloj
+          mSM->getSceneNode("manecillas")->roll(Ogre::Degree(3));    //Rota manecillas
+      }
+  }
+  else if (evt.keysym.sym == SDLK_h) {
+      if (mSM->getSceneNode("clock") != nullptr) {
+          mSM->getSceneNode("clock")->roll(Ogre::Degree(3));    //Rota reloj
+      }
+  }
   //else if (evt.keysym.sym == SDLK_???)
   
   return true;
@@ -70,7 +81,7 @@ void IG2App::setupScene(void)
   
   // and tell it to render into the main window
   Viewport* vp = getRenderWindow()->addViewport(cam);
-  //vp->setBackgroundColour(Ogre::ColourValue(1, 1, 1));
+  vp->setBackgroundColour(Ogre::ColourValue(0.7, 0.8, 0.9));    //Scene background color
 
   //------------------------------------------------------------------------
 
@@ -85,19 +96,19 @@ void IG2App::setupScene(void)
   mLightNode->attachObject(luz);
 
   mLightNode->setDirection(Ogre::Vector3(0, 0, -1));  //vec3.normalise();
+  //mLightNode->setDirection(Ogre::Vector3(0, 1, 0));  //vec3.normalise();
+  //mLightNode->setDirection(Ogre::Vector3(0, -1, 0));  //vec3.normalise();
   //lightNode->setPosition(0, 0, 1000);
  
   //------------------------------------------------------------------------
 
   // finally something to render
 
-  Ogre::Entity* ent = mSM->createEntity("Sinbad.mesh");
+  //Ogre::Entity* ent = mSM->createEntity("Sword.mesh");  
+  //Ogre::Entity* ent = mSM->createEntity("DamagedHelmet.mesh");
+  //Ogre::Entity* ent = mSM->createEntity("ogrehead.mesh");    
 
-  mSinbadNode = mSM->getRootSceneNode()->createChildSceneNode("nSinbad");
-  mSinbadNode->attachObject(ent);
-
-  //mSinbadNode->setPosition(400, 100, -300);
-  mSinbadNode->setScale(20, 20, 20);
+  //mSinbadNode->setScale(20, 20, 20);
   //mSinbadNode->yaw(Ogre::Degree(-45));
   //mSinbadNode->showBoundingBox(true);
   //mSinbadNode->setVisible(false);
@@ -112,6 +123,98 @@ void IG2App::setupScene(void)
   //mCamMgr->setYawPitchDist(Radian(0), Degree(30), 100);
 
   //------------------------------------------------------------------------
-
+  setScene(1);
+  switch (sceneId) {
+  case 0: scene0(); break;
+  case 1: scene1(); break;
+  case 2: scene2(); break;
+  }
 }
+//------------------------------------------------------------------------
+void IG2App::scene0() //Ejercicio 14
+{
+    //ROMAN BATHROOM
+    Ogre::Entity* bathFloor = mSM->createEntity("RomanBathLower.mesh");
+    Ogre::Entity* bathUpper = mSM->createEntity("RomanBathUpper.mesh");
+    Ogre::Entity* columns = mSM->createEntity("Columns.mesh");
 
+    Ogre::SceneNode* bathNode = mSM->getRootSceneNode()->createChildSceneNode("bath");
+    bathNode->createChildSceneNode("bathUpper")->attachObject(bathUpper);
+    bathNode->createChildSceneNode("bathFloor")->attachObject(bathFloor);
+    bathNode->createChildSceneNode("columns")->attachObject(columns);
+
+    bathNode->setScale(0.1f, 0.1f, 0.1f);
+
+    //DRAGON
+    Ogre::Entity* dragon = mSM->createEntity("dragon.mesh");
+    Ogre::SceneNode* dragonNode = mSM->getRootSceneNode()->createChildSceneNode("dragon");
+    dragonNode->attachObject(dragon);
+    dragonNode->setScale(0.1f, 0.1f, 0.1f);
+    dragonNode->setPosition(0, 10, 0);
+
+
+    //SINBAD
+    Ogre::Entity* ent = mSM->createEntity("Sinbad.mesh");
+    mSinbadNode = mSM->getRootSceneNode()->createChildSceneNode("nSinbad");
+    mSinbadNode->attachObject(ent);
+    mSinbadNode->setScale(2, 2, 2);
+    mSinbadNode->setPosition(0, 2, 0);
+}
+//------------------------------------------------------------------------
+void IG2App::scene1()   //Ejercicio15
+{   
+    std::vector<SceneNode*> sphereVector;
+
+    
+    Ogre::SceneNode* clockNode = mSM->getRootSceneNode()->createChildSceneNode("clock");
+
+    int lenght = 90;
+    float ang = 360 / 12;
+    for (int x = 1; x <= 12; x++) {     //Bolas horas de reloj
+        Ogre::Entity* sphere = mSM->createEntity("sphere.mesh"); 
+        sphereVector.push_back(clockNode->createChildSceneNode("hora" + std::to_string(x)));
+        sphereVector.back()->attachObject(sphere);
+        
+        sphereVector.back()->setPosition(lenght * Ogre::Math::Cos(Ogre::Degree(90 - x * ang)),
+                                        lenght * Ogre::Math::Sin(Ogre::Degree(90 - x * ang)), 0);
+
+        sphereVector.back()->setScale(0.1f, 0.1f, 0.1f);
+    }      
+
+    /*for (int x = 1; x <= 12; x++) {
+            Ogre::SceneNode* node = mSM->getSceneNode("hora" + std::to_string(x));
+        if (x % 2 == 0) {
+            node->setScale(0.05f, 0.05f, 0.05f);
+        }
+        else
+            node->setScale(0.1f, 0.1f, 0.1f);
+    }*/
+
+    //Manecillas
+    Ogre::SceneNode* manecillasNode = mSM->getRootSceneNode()->createChildSceneNode("manecillas");
+    Ogre::Entity* entity = mSM->createEntity("cube.mesh");
+    manecillasNode->createChildSceneNode("segundero")->attachObject(entity);
+
+    entity = mSM->createEntity("cube.mesh");
+    manecillasNode->createChildSceneNode("minutero")->attachObject(entity);
+
+    entity = mSM->createEntity("cube.mesh");
+    manecillasNode->createChildSceneNode("hora")->attachObject(entity);
+
+    //Transformaciones
+    mSM->getSceneNode("hora")->setScale(0.05f, 0.5f, 0.05f);
+    mSM->getSceneNode("hora")->roll(Ogre::Degree(-90));
+    mSM->getSceneNode("hora")->setPosition((lenght / 4) * Ogre::Math::Cos(Ogre::Degree(0)), (lenght / 4) * Ogre::Math::Sin(Ogre::Degree(0)), 0);
+
+    mSM->getSceneNode("minutero")->setScale(0.03f, 0.7f, 0.03f);
+    mSM->getSceneNode("minutero")->setPosition((lenght / 4) * Ogre::Math::Cos(Ogre::Degree(90)), (lenght / 4) * Ogre::Math::Sin(Ogre::Degree(90)), 0);
+
+    mSM->getSceneNode("segundero")->setScale(0.01f, 0.8f, 0.01f);
+    mSM->getSceneNode("segundero")->roll(Ogre::Degree(-230));
+    mSM->getSceneNode("segundero")->setPosition((lenght / 4) * Ogre::Math::Cos(Ogre::Degree(-140)), (lenght / 4) * Ogre::Math::Sin(Ogre::Degree(-140)), 0);
+}
+//------------------------------------------------------------------------
+void IG2App::scene2()
+{
+}
+//------------------------------------------------------------------------

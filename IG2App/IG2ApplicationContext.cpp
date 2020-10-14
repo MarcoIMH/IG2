@@ -33,7 +33,7 @@ namespace OgreBites {
 		mFSLayer = new Ogre::FileSystemLayer(mAppName);
 		mRoot = nullptr;
 		mOverlaySystem = nullptr;
-		mFirstRun = true;
+		mFirstRun = true;		
 
 		mShaderGenerator = nullptr;
 		mMaterialMgrListener = nullptr;
@@ -47,6 +47,9 @@ namespace OgreBites {
 	void IG2ApplicationContext::initApp()
 	{
 		createRoot();
+
+		//Call config dialog at the proyect opening
+		//mRoot->showConfigDialog(OgreBites::getNativeConfigDialog());
 
 		if (oneTimeConfig())
 			setup();
