@@ -18,6 +18,19 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
           mSM->getSceneNode("clock")->roll(Ogre::Degree(3));    //Rota reloj
           mSM->getSceneNode("manecillas")->roll(Ogre::Degree(3));    //Rota manecillas
       }
+      if (mSM->getSceneNode("aspas") != nullptr) {
+          
+          SceneNode* apNode = mSM->getSceneNode("aspas");
+          apNode->roll(Ogre::Degree(3));
+          
+          int cont = 1;
+          SceneNode* aNode = mSM->getSceneNode("adorno_" + std::to_string(cont));
+          while (aNode != nullptr) {              
+              aNode->roll(Ogre::Degree(-3));
+              cont++;
+              aNode = mSM->getSceneNode("adorno_" + std::to_string(cont));
+          }
+      }
   }
   else if (evt.keysym.sym == SDLK_h) {
       if (mSM->getSceneNode("clock") != nullptr) {
@@ -225,8 +238,9 @@ void IG2App::scene2()
 
     int num = 12;
     float ang = 360 / num;
+    SceneNode* aspasNode = mSM->getRootSceneNode()->createChildSceneNode("aspas");
     for (int x = 0; x < num; x++) {
-        SceneNode* aspaNode = mSM->getRootSceneNode()->createChildSceneNode("aspas_"+std::to_string(x+1));
+        SceneNode* aspaNode = aspasNode->createChildSceneNode("aspa_"+std::to_string(x+1));
         SceneNode* tableroNode = aspaNode->createChildSceneNode("tablero_" + std::to_string(x+1));
         SceneNode* cilindroNode = aspaNode->createChildSceneNode("adorno_" + std::to_string(x+1));
 
