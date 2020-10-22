@@ -1,11 +1,10 @@
 #include "AspasMolino.h"
 #include "IG2App.h"
 
-AspasMolino::AspasMolino(int numAspas_, SceneManager* sMG_, IG2App *igApp) :
+AspasMolino::AspasMolino(int numAspas_, IG2App *igApp, SceneNode *aspasNode) :
 	numAspas(numAspas_)
 {
-    arrayAspas = new Aspa * [numAspas];
-	aspasNode = sMG_->getRootSceneNode()->createChildSceneNode("aspas");
+    arrayAspas = new Aspa * [numAspas];	
 
     float ang = 360 / numAspas;
     for (int x = 0; x < numAspas; x++) {
@@ -13,8 +12,7 @@ AspasMolino::AspasMolino(int numAspas_, SceneManager* sMG_, IG2App *igApp) :
         SceneNode* tableroNode = aspaNode->createChildSceneNode("tablero_" + std::to_string(x + 1));
         SceneNode* cilindroNode = aspaNode->createChildSceneNode("adorno_" + std::to_string(x + 1));
 
-        arrayAspas[x] = new Aspa(sMG_, aspaNode, tableroNode, cilindroNode);
-        igApp->addInputListener(arrayAspas[x]);
+        arrayAspas[x] = new Aspa(aspaNode, tableroNode, cilindroNode);
 
         aspaNode->setPosition(80 * Ogre::Math::Cos(Ogre::Degree(x * ang)),
             80 * Ogre::Math::Sin(Ogre::Degree(x * ang)), 0);
@@ -34,10 +32,14 @@ AspasMolino::~AspasMolino()
     delete[] arrayAspas;
 }
 
-bool AspasMolino::keyPressed(const OgreBites::KeyboardEvent& evt)
+
+void AspasMolino::giroAspasMolino()
 {
-    if (evt.keysym.sym == SDLK_g) {
-        aspasNode->roll(Ogre::Degree(3));
-  }
-    return true;
+    int grados = 3;
+    aspasNode->roll(Ogre::Degree(grados));
+
+    for (int x = 0; x < numAspas; x++) {
+        arrayAspas[x]->giroAspa(grados);
+    }
 }
+

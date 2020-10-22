@@ -39,7 +39,11 @@ void IG2App::shutdown()
   delete mTrayMgr;  mTrayMgr = nullptr;
   delete mCamMgr; mCamMgr = nullptr;
 
-  delete aspasMolino;
+  if (molino != nullptr) {
+      delete molino;
+      molino = nullptr;
+  }
+  
   
   // do not forget to call the base 
   IG2ApplicationContext::shutdown();
@@ -250,7 +254,7 @@ void IG2App::scene2()
         cilindroNode->roll(Ogre::Degree(-x * ang));
     }*/
 
-    aspasMolino = new AspasMolino(12, mSM, this);
-    addInputListener(aspasMolino);
+    molino = new Molino(mSM, this);
+    addInputListener(molino);
 }
 //------------------------------------------------------------------------

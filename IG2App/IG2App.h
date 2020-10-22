@@ -6,7 +6,7 @@
 #include <OgreSceneNode.h>
 #include <OgreTrays.h>
 #include <OgreCameraMan.h>
-#include "AspasMolino.h"
+#include "Molino.h"
 
 
 class IG2App : public  OgreBites::IG2ApplicationContext, OgreBites::InputListener 
@@ -36,7 +36,7 @@ private:
     void scene1();
     void scene2();
     int sc2Numaspas = 12;
-    AspasMolino* aspasMolino;
+    Molino* molino;
 };
 
 #endif

@@ -5,13 +5,13 @@
 #include <OgreInput.h>
 #include <SDL_keycode.h>
 
-class Aspa : public OgreBites::InputListener
+class Aspa
 {
 public:
-	Aspa(Ogre::SceneManager* mSM, Ogre::SceneNode *aN, Ogre::SceneNode* tN, Ogre::SceneNode* cN);
+	Aspa(Ogre::SceneNode *aN, Ogre::SceneNode* tN, Ogre::SceneNode* cN);
 	~Aspa() {};
 
-	virtual bool keyPressed(const OgreBites::KeyboardEvent& evt);  // InputListener
+	void giroAspa(int grados);
 protected:
 	Ogre::SceneNode* aspaNode;
 	Ogre::SceneNode* tableroNode;

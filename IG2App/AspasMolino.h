@@ -5,13 +5,13 @@ class IG2App;
 
 using namespace Ogre;
 
-class AspasMolino : public OgreBites::InputListener
+class AspasMolino
 {
 public:
-	AspasMolino(int numAspas_, SceneManager* sMG_, IG2App* igApp);
+	AspasMolino(int numAspas_, IG2App* igApp, SceneNode* aspasNode);
 	~AspasMolino();
 
-	virtual bool keyPressed(const OgreBites::KeyboardEvent& evt);  // InputListener
+	void giroAspasMolino();
 protected:
 	SceneNode* aspasNode;
 	int numAspas;
