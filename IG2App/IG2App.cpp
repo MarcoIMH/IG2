@@ -33,12 +33,19 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
           if (mSM->getSceneNode("tierra") != nullptr) {
               SceneNode* tierra = mSM->getSceneNode("tierra");
               SceneNode* sol = mSM->getSceneNode("sol");
+              SceneNode* luna = mSM->getSceneNode("luna");
                  
-              Ogre::Real distance = sol->convertLocalToWorldPosition(Vector3(0, 0, 0)).distance(tierra->convertLocalToWorldPosition(Vector3(0, 0, 0)));
+              Ogre::Real distanceSolTierra = sol->convertLocalToWorldPosition(Vector3(0, 0, 0)).distance(tierra->convertLocalToWorldPosition(Vector3(0, 0, 0)));
+              Ogre::Real distanceTierraLuna = tierra->convertLocalToWorldPosition(Vector3(0, 0, 0)).distance(luna->convertLocalToWorldPosition(Vector3(0, 0, 0)));;
               tierra->setPosition(0, 0, 0);
-              tierra->yaw(Ogre::Degree(3), Ogre::Node::TS_LOCAL);
-              tierra->translate(Vector3(distance, 0, 0), Ogre::Node::TS_LOCAL);
+              tierra->yaw(Ogre::Degree(-3), Ogre::Node::TS_LOCAL);
+              tierra->translate(Vector3(distanceSolTierra, 0, 0), Ogre::Node::TS_LOCAL);
               tierra->translate(sol->convertLocalToWorldPosition(Vector3(0, 0, 0)), Ogre::Node::TS_WORLD);
+
+              luna->setPosition(0, 0, 0);
+              luna->yaw(Ogre::Degree(3), Ogre::Node::TS_LOCAL);
+              luna->translate(Vector3(distanceTierraLuna, 0, 0), Ogre::Node::TS_LOCAL);
+              luna->translate(tierra->convertLocalToWorldPosition(Vector3(0, 0, 0)), Ogre::Node::TS_WORLD);
           }
       }
   }
@@ -283,19 +290,29 @@ void IG2App::scene2()
 void IG2App::scene3()
 {
     Real position = 400;
+    Real radioTierra = 400;
+    Real radioLuna = 100;
 
     SceneNode* sol = mSM->getRootSceneNode()->createChildSceneNode("sol");
     Ogre::Entity* ent = mSM->createEntity("sphere.mesh");
     sol->attachObject(ent);
-    sol->setPosition(position, 0, 0);
     sol->scale(0.5f, 0.5f, 0.5f);
+    sol->setPosition(position, 0, 0);
 
     SceneNode* tierra = mSM->getRootSceneNode()->createChildSceneNode("tierra");
     ent = mSM->createEntity("sphere.mesh");
     tierra->attachObject(ent);
+    tierra->scale(0.3f, 0.3f, 0.3f);
     tierra->setPosition(position, 0, 0);
     tierra->yaw(Ogre::Degree(180), Ogre::Node::TS_LOCAL);
-    tierra->translate(Vector3(400, 0, 0), Ogre::Node::TS_LOCAL);
-    tierra->scale(0.3f, 0.3f, 0.3f);
+    tierra->translate(Vector3(radioTierra, 0, 0), Ogre::Node::TS_LOCAL);
+
+    SceneNode* luna = mSM->getRootSceneNode()->createChildSceneNode("luna");
+    ent = mSM->createEntity("sphere.mesh");
+    luna->attachObject(ent);
+    luna->scale(0.1f, 0.1f, 0.1f);
+    luna->setPosition(tierra->convertLocalToWorldPosition(Vector3(0, 0, 0)));
+    luna->yaw(Ogre::Degree(180), Ogre::Node::TS_LOCAL);
+    luna->translate(Vector3(radioLuna, 0, 0), Ogre::Node::TS_LOCAL);
 }
 //------------------------------------------------------------------------
