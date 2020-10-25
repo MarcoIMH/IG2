@@ -30,5 +30,8 @@ bool Molino::keyPressed(const OgreBites::KeyboardEvent& evt)
 	if (evt.keysym.sym == SDLK_g) {
 		aspas->giroAspasMolino();
 	}
+	if (evt.keysym.sym == SDLK_c) {
+		aspas->esconderCilindro();
+	}
 	return false;
 }

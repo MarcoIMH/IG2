@@ -3,7 +3,8 @@
 
 AspasMolino::AspasMolino(int numAspas_, SceneNode *_aspasNode) : 
     aspasNode(_aspasNode),
-	numAspas(numAspas_)
+	numAspas(numAspas_),
+    cilindroTransladado(false)
 {
     arrayAspas = new Aspa * [numAspas];	
 
@@ -48,6 +49,14 @@ void AspasMolino::giroAspasMolino()
 
     for (int x = 0; x < numAspas; x++) {
         arrayAspas[x]->giroAspa(grados);
+    }
+}
+
+void AspasMolino::esconderCilindro()
+{
+    if (!cilindroTransladado) {
+        cilindroCentral->translate(0, 0, -11);
+        cilindroTransladado = true;
     }
 }
 

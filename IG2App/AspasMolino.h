@@ -12,10 +12,12 @@ public:
 	~AspasMolino();
 
 	void giroAspasMolino();
+	void esconderCilindro();
 protected:
 	SceneNode* aspasNode;
 	SceneNode* cilindroCentral;
 	int numAspas;
 	Aspa** arrayAspas;
+	bool cilindroTransladado;
 };
 
