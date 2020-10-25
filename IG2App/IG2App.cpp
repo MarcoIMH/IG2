@@ -5,6 +5,8 @@
 #include <SDL_keycode.h>
 #include <OgreMeshManager.h>
 
+#include <iostream>
+
 using namespace Ogre;
 
 bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
@@ -25,6 +27,20 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
               mSM->getSceneNode("clock")->roll(Ogre::Degree(3));    //Rota reloj
           }
       }   
+  }
+  else if (evt.keysym.sym == SDLK_j) {
+      if (sceneId == 3) {
+          if (mSM->getSceneNode("tierra") != nullptr) {
+              SceneNode* tierra = mSM->getSceneNode("tierra");
+              SceneNode* sol = mSM->getSceneNode("sol");
+                 
+              Ogre::Real distance = sol->convertLocalToWorldPosition(Vector3(0, 0, 0)).distance(tierra->convertLocalToWorldPosition(Vector3(0, 0, 0)));
+              tierra->setPosition(0, 0, 0);
+              tierra->yaw(Ogre::Degree(3), Ogre::Node::TS_LOCAL);
+              tierra->translate(Vector3(distance, 0, 0), Ogre::Node::TS_LOCAL);
+              tierra->translate(sol->convertLocalToWorldPosition(Vector3(0, 0, 0)), Ogre::Node::TS_WORLD);
+          }
+      }
   }
   //else if (evt.keysym.sym == SDLK_???)
   
@@ -124,11 +140,12 @@ void IG2App::setupScene(void)
   //mCamMgr->setYawPitchDist(Radian(0), Degree(30), 100);
 
   //------------------------------------------------------------------------
-  setScene(2);
+  setScene(3);
   switch (sceneId) {
   case 0: scene0(); break;
   case 1: scene1(); break;
   case 2: scene2(); break;
+  case 3: scene3(); break;
   }
 }
 //------------------------------------------------------------------------
@@ -193,6 +210,7 @@ void IG2App::scene1()   //Ejercicio15
 
     //Manecillas
     Ogre::SceneNode* manecillasNode = mSM->getRootSceneNode()->createChildSceneNode("manecillas");
+    manecillasNode->setPosition(0, 0, 0);
     Ogre::Entity* entity = mSM->createEntity("cube.mesh");
     manecillasNode->createChildSceneNode("segundero")->attachObject(entity);
 
@@ -204,14 +222,17 @@ void IG2App::scene1()   //Ejercicio15
 
     //Transformaciones
     mSM->getSceneNode("hora")->setScale(0.05f, 0.5f, 0.05f);
-    mSM->getSceneNode("hora")->roll(Ogre::Degree(-90));
+    mSM->getSceneNode("hora")->translate(0, lenght / 4, 0);
+    mSM->getSceneNode("hora")->roll(Ogre::Degree(-90), Ogre::Node::TS_PARENT);
     mSM->getSceneNode("hora")->setPosition((lenght / 4) * Ogre::Math::Cos(Ogre::Degree(0)), (lenght / 4) * Ogre::Math::Sin(Ogre::Degree(0)), 0);
 
     mSM->getSceneNode("minutero")->setScale(0.03f, 0.7f, 0.03f);
+    mSM->getSceneNode("minutero")->translate(0, lenght / 4, 0);
     mSM->getSceneNode("minutero")->setPosition((lenght / 4) * Ogre::Math::Cos(Ogre::Degree(90)), (lenght / 4) * Ogre::Math::Sin(Ogre::Degree(90)), 0);
 
     mSM->getSceneNode("segundero")->setScale(0.01f, 0.8f, 0.01f);
-    mSM->getSceneNode("segundero")->roll(Ogre::Degree(-230));
+    mSM->getSceneNode("segundero")->translate(0, lenght / 4, 0);
+    mSM->getSceneNode("segundero")->roll(Ogre::Degree(-230), Ogre::Node::TS_PARENT);
     mSM->getSceneNode("segundero")->setPosition((lenght / 4) * Ogre::Math::Cos(Ogre::Degree(-140)), (lenght / 4) * Ogre::Math::Sin(Ogre::Degree(-140)), 0);
 }
 //------------------------------------------------------------------------
@@ -258,5 +279,23 @@ void IG2App::scene2()
 
     molino = new Molino(mSM);
     addInputListener(molino);
+}
+void IG2App::scene3()
+{
+    Real position = 400;
+
+    SceneNode* sol = mSM->getRootSceneNode()->createChildSceneNode("sol");
+    Ogre::Entity* ent = mSM->createEntity("sphere.mesh");
+    sol->attachObject(ent);
+    sol->setPosition(position, 0, 0);
+    sol->scale(0.5f, 0.5f, 0.5f);
+
+    SceneNode* tierra = mSM->getRootSceneNode()->createChildSceneNode("tierra");
+    ent = mSM->createEntity("sphere.mesh");
+    tierra->attachObject(ent);
+    tierra->setPosition(position, 0, 0);
+    tierra->yaw(Ogre::Degree(180), Ogre::Node::TS_LOCAL);
+    tierra->translate(Vector3(400, 0, 0), Ogre::Node::TS_LOCAL);
+    tierra->scale(0.3f, 0.3f, 0.3f);
 }
 //------------------------------------------------------------------------

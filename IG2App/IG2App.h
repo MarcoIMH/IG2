@@ -35,6 +35,7 @@ private:
     void scene0();
     void scene1();
     void scene2();
+    void scene3();
     int sc2Numaspas = 12;
     Molino* molino;
 };
