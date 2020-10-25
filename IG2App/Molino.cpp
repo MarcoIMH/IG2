@@ -3,9 +3,14 @@
 Molino::Molino(SceneManager* mSM)
 {
 	mNode = mSM->getRootSceneNode()->createChildSceneNode("molino");
-	aspasNode = mNode->createChildSceneNode("aspas");
+	nodoFicticioCentro = mNode->createChildSceneNode();
+	aspasNode = nodoFicticioCentro->createChildSceneNode("aspas");	//ficticio
+	//aspasNode = mNode->createChildSceneNode("aspas");	//(truco)
 	esferaNode = mNode->createChildSceneNode("techo");
 	cilindroNode = mNode->createChildSceneNode("cuerpo");
+
+	nodoFicticioCentro->translate(0, 30, -80);
+	aspasNode->translate(0, 0, 80);
 
 	Entity* ent = mSM->createEntity("Barrel.mesh");
 	cilindroNode->attachObject(ent);
@@ -32,6 +37,12 @@ bool Molino::keyPressed(const OgreBites::KeyboardEvent& evt)
 	}
 	if (evt.keysym.sym == SDLK_c) {
 		aspas->esconderCilindro();
+	}
+	if (evt.keysym.sym == SDLK_h) {
+		nodoFicticioCentro->yaw(Ogre::Degree(3));
+
+		//Truco
+		
 	}
 	return false;
 }

@@ -10,6 +10,7 @@ public:
 	virtual bool keyPressed(const OgreBites::KeyboardEvent& evt);  // InputListener
 private:
 	SceneNode* mNode;
+	SceneNode* nodoFicticioCentro;
 	SceneNode* cilindroNode;
 	SceneNode* esferaNode;
 	SceneNode* aspasNode;
