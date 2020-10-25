@@ -5,7 +5,7 @@
 class Molino: public OgreBites::InputListener
 {
 public:
-	Molino(SceneManager* mSM, IG2App* igApp);
+	Molino(SceneManager* mSM);
 	~Molino();
 	virtual bool keyPressed(const OgreBites::KeyboardEvent& evt);  // InputListener
 private:

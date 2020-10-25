@@ -20,9 +20,11 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
       }
   }
   else if (evt.keysym.sym == SDLK_h) {
-      if (mSM->getSceneNode("clock") != nullptr) {
-          mSM->getSceneNode("clock")->roll(Ogre::Degree(3));    //Rota reloj
-      }
+      if (sceneId == 1) {
+          if (mSM->getSceneNode("clock") != nullptr) {
+              mSM->getSceneNode("clock")->roll(Ogre::Degree(3));    //Rota reloj
+          }
+      }   
   }
   //else if (evt.keysym.sym == SDLK_???)
   
@@ -254,7 +256,7 @@ void IG2App::scene2()
         cilindroNode->roll(Ogre::Degree(-x * ang));
     }*/
 
-    molino = new Molino(mSM, this);
+    molino = new Molino(mSM);
     addInputListener(molino);
 }
 //------------------------------------------------------------------------

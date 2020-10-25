@@ -1,10 +1,18 @@
 #include "AspasMolino.h"
 #include "IG2App.h"
 
-AspasMolino::AspasMolino(int numAspas_, IG2App *igApp, SceneNode *aspasNode) :
+AspasMolino::AspasMolino(int numAspas_, SceneNode *_aspasNode) : 
+    aspasNode(_aspasNode),
 	numAspas(numAspas_)
 {
     arrayAspas = new Aspa * [numAspas];	
+
+    cilindroCentral = aspasNode->createChildSceneNode("cilindroCentral");
+    Ogre::Entity* ent = aspasNode->getCreator()->createEntity("Barrel.mesh");
+    cilindroCentral->attachObject(ent);
+
+    cilindroCentral->pitch(Ogre::Degree(90));
+    cilindroCentral->scale(6, 4, 6);
 
     float ang = 360 / numAspas;
     for (int x = 0; x < numAspas; x++) {

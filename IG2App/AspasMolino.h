@@ -8,12 +8,13 @@ using namespace Ogre;
 class AspasMolino
 {
 public:
-	AspasMolino(int numAspas_, IG2App* igApp, SceneNode* aspasNode);
+	AspasMolino(int numAspas_, SceneNode* aspasNode);
 	~AspasMolino();
 
 	void giroAspasMolino();
 protected:
 	SceneNode* aspasNode;
+	SceneNode* cilindroCentral;
 	int numAspas;
 	Aspa** arrayAspas;
 };

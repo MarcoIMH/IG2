@@ -1,6 +1,6 @@
 #include "Molino.h"
 
-Molino::Molino(SceneManager* mSM, IG2App* igApp)
+Molino::Molino(SceneManager* mSM)
 {
 	mNode = mSM->getRootSceneNode()->createChildSceneNode("molino");
 	aspasNode = mNode->createChildSceneNode("aspas");
@@ -17,7 +17,7 @@ Molino::Molino(SceneManager* mSM, IG2App* igApp)
 	esferaNode->setScale(0.8f, 0.8f, 0.8f);
 	esferaNode->translate(0, 30, -80);
 
-	aspas = new AspasMolino(6, igApp, aspasNode);
+	aspas = new AspasMolino(6, aspasNode);
 }
 
 Molino::~Molino()
