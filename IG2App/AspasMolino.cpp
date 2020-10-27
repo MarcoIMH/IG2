@@ -8,7 +8,7 @@ AspasMolino::AspasMolino(int numAspas_, SceneNode *_aspasNode) :
 {
     arrayAspas = new Aspa * [numAspas];	
 
-    cilindroCentral = aspasNode->createChildSceneNode("cilindroCentral");
+    cilindroCentral = aspasNode->createChildSceneNode();
     Ogre::Entity* ent = aspasNode->getCreator()->createEntity("Barrel.mesh");
     cilindroCentral->attachObject(ent);
 
@@ -17,9 +17,9 @@ AspasMolino::AspasMolino(int numAspas_, SceneNode *_aspasNode) :
 
     float ang = 360 / numAspas;
     for (int x = 0; x < numAspas; x++) {
-        SceneNode* aspaNode = aspasNode->createChildSceneNode("aspa_" + std::to_string(x + 1));
-        SceneNode* tableroNode = aspaNode->createChildSceneNode("tablero_" + std::to_string(x + 1));
-        SceneNode* cilindroNode = aspaNode->createChildSceneNode("adorno_" + std::to_string(x + 1));
+        SceneNode* aspaNode = aspasNode->createChildSceneNode();
+        SceneNode* tableroNode = aspaNode->createChildSceneNode();
+        SceneNode* cilindroNode = aspaNode->createChildSceneNode();
 
         arrayAspas[x] = new Aspa(aspaNode, tableroNode, cilindroNode);
 
@@ -42,9 +42,8 @@ AspasMolino::~AspasMolino()
 }
 
 
-void AspasMolino::giroAspasMolino()
+void AspasMolino::giroAspasMolino(int grados)
 {
-    int grados = 3;
     aspasNode->roll(Ogre::Degree(grados));
 
     for (int x = 0; x < numAspas; x++) {

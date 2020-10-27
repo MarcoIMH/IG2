@@ -68,7 +68,10 @@ void IG2App::shutdown()
       delete molino;
       molino = nullptr;
   }
-  
+  if (avion != nullptr) {
+      delete avion;
+      avion = nullptr;
+  }
   
   // do not forget to call the base 
   IG2ApplicationContext::shutdown();
@@ -318,6 +321,7 @@ void IG2App::scene3()
 }
 
 void IG2App::scene4() {
-
+    avion = new Avion(mSM);
+    addInputListener(avion);
 }
 //------------------------------------------------------------------------

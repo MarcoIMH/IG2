@@ -11,7 +11,7 @@ public:
 	AspasMolino(int numAspas_, SceneNode* aspasNode);
 	~AspasMolino();
 
-	void giroAspasMolino();
+	void giroAspasMolino(int grados = 3);
 	void esconderCilindro();
 protected:
 	SceneNode* aspasNode;
