@@ -4,13 +4,13 @@ Molino::Molino(SceneManager* mSM)
 {
 	mNode = mSM->getRootSceneNode()->createChildSceneNode("molino");
 	nodoFicticioCentro = mNode->createChildSceneNode();
-	aspasNode = nodoFicticioCentro->createChildSceneNode("aspas");	//ficticio
-	//aspasNode = mNode->createChildSceneNode("aspas");	//(truco)
+	//aspasNode = nodoFicticioCentro->createChildSceneNode("aspas");	//ficticio
+	aspasNode = mNode->createChildSceneNode("aspas");	//(truco)
 	esferaNode = mNode->createChildSceneNode("techo");
 	cilindroNode = mNode->createChildSceneNode("cuerpo");
 
 	nodoFicticioCentro->translate(0, 30, -80);
-	aspasNode->translate(0, 0, 80);
+	//aspasNode->translate(0, 0, 80);
 
 	Entity* ent = mSM->createEntity("Barrel.mesh");
 	cilindroNode->attachObject(ent);
@@ -39,10 +39,15 @@ bool Molino::keyPressed(const OgreBites::KeyboardEvent& evt)
 		aspas->esconderCilindro();
 	}
 	if (evt.keysym.sym == SDLK_h) {
-		nodoFicticioCentro->yaw(Ogre::Degree(3));
+		//Nodo ficticio
+		//nodoFicticioCentro->yaw(Ogre::Degree(3));
 
 		//Truco
-		
+		Ogre::Real radius = esferaNode->convertLocalToWorldPosition(Vector3(0, 0, 0)).distance(aspasNode->convertLocalToWorldPosition(Vector3(0, 0, 0)));
+		aspasNode->setPosition(0, 0, 0);
+		aspasNode->yaw(Ogre::Degree(3), Node::TS_LOCAL);
+		aspasNode->translate(0, 0, radius, Node::TS_LOCAL);
+		aspasNode->translate(esferaNode->convertLocalToWorldPosition(Vector3(0, 0, 0)), Node::TS_WORLD);
 	}
 	return false;
 }

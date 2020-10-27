@@ -147,12 +147,13 @@ void IG2App::setupScene(void)
   //mCamMgr->setYawPitchDist(Radian(0), Degree(30), 100);
 
   //------------------------------------------------------------------------
-  setScene(3);
+  setScene(4);
   switch (sceneId) {
   case 0: scene0(); break;
   case 1: scene1(); break;
   case 2: scene2(); break;
   case 3: scene3(); break;
+  case 4: scene4(); break;
   }
 }
 //------------------------------------------------------------------------
@@ -314,5 +315,9 @@ void IG2App::scene3()
     luna->setPosition(tierra->convertLocalToWorldPosition(Vector3(0, 0, 0)));
     luna->yaw(Ogre::Degree(180), Ogre::Node::TS_LOCAL);
     luna->translate(Vector3(radioLuna, 0, 0), Ogre::Node::TS_LOCAL);
+}
+
+void IG2App::scene4() {
+
 }
 //------------------------------------------------------------------------
