@@ -38,12 +38,12 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
               Ogre::Real distanceSolTierra = sol->convertLocalToWorldPosition(Vector3(0, 0, 0)).distance(tierra->convertLocalToWorldPosition(Vector3(0, 0, 0)));
               Ogre::Real distanceTierraLuna = tierra->convertLocalToWorldPosition(Vector3(0, 0, 0)).distance(luna->convertLocalToWorldPosition(Vector3(0, 0, 0)));;
               tierra->setPosition(0, 0, 0);
-              tierra->yaw(Ogre::Degree(-3), Ogre::Node::TS_LOCAL);
+              tierra->yaw(Ogre::Degree(-3), Ogre::Node::TS_WORLD);
               tierra->translate(Vector3(distanceSolTierra, 0, 0), Ogre::Node::TS_LOCAL);
               tierra->translate(sol->convertLocalToWorldPosition(Vector3(0, 0, 0)), Ogre::Node::TS_WORLD);
 
               luna->setPosition(0, 0, 0);
-              luna->yaw(Ogre::Degree(3), Ogre::Node::TS_LOCAL);
+              luna->yaw(Ogre::Degree(3), Ogre::Node::TS_WORLD);
               luna->translate(Vector3(distanceTierraLuna, 0, 0), Ogre::Node::TS_LOCAL);
               luna->translate(tierra->convertLocalToWorldPosition(Vector3(0, 0, 0)), Ogre::Node::TS_WORLD);
           }
@@ -150,7 +150,7 @@ void IG2App::setupScene(void)
   //mCamMgr->setYawPitchDist(Radian(0), Degree(30), 100);
 
   //------------------------------------------------------------------------
-  setScene(4);
+  setScene(1);
   switch (sceneId) {
   case 0: scene0(); break;
   case 1: scene1(); break;
@@ -233,18 +233,35 @@ void IG2App::scene1()   //Ejercicio15
 
     //Transformaciones
     mSM->getSceneNode("hora")->setScale(0.05f, 0.5f, 0.05f);
-    mSM->getSceneNode("hora")->translate(0, lenght / 4, 0);
-    mSM->getSceneNode("hora")->roll(Ogre::Degree(-90), Ogre::Node::TS_PARENT);
-    mSM->getSceneNode("hora")->setPosition((lenght / 4) * Ogre::Math::Cos(Ogre::Degree(0)), (lenght / 4) * Ogre::Math::Sin(Ogre::Degree(0)), 0);
+    SceneNode* manecilla = mSM->getSceneNode("hora");
+    manecilla->setPosition(0, 0, 0);
+    manecilla->roll(Degree(-90), Node::TS_WORLD);
+    manecilla->translate(Vector3(0, lenght / 8, 0), Node::TS_LOCAL);
+    manecilla->translate(manecilla->convertLocalToWorldPosition(Vector3(0, 0, 0)), Node::TS_WORLD);
 
-    mSM->getSceneNode("minutero")->setScale(0.03f, 0.7f, 0.03f);
-    mSM->getSceneNode("minutero")->translate(0, lenght / 4, 0);
-    mSM->getSceneNode("minutero")->setPosition((lenght / 4) * Ogre::Math::Cos(Ogre::Degree(90)), (lenght / 4) * Ogre::Math::Sin(Ogre::Degree(90)), 0);
+    //mSM->getSceneNode("hora")->translate(0, lenght / 4, 0);
+    //mSM->getSceneNode("hora")->roll(Ogre::Degree(-90), Ogre::Node::TS_PARENT);
+    //mSM->getSceneNode("hora")->setPosition((lenght / 4) * Ogre::Math::Cos(Ogre::Degree(0)), (lenght / 4) * Ogre::Math::Sin(Ogre::Degree(0)), 0);
 
-    mSM->getSceneNode("segundero")->setScale(0.01f, 0.8f, 0.01f);
-    mSM->getSceneNode("segundero")->translate(0, lenght / 4, 0);
-    mSM->getSceneNode("segundero")->roll(Ogre::Degree(-230), Ogre::Node::TS_PARENT);
-    mSM->getSceneNode("segundero")->setPosition((lenght / 4) * Ogre::Math::Cos(Ogre::Degree(-140)), (lenght / 4) * Ogre::Math::Sin(Ogre::Degree(-140)), 0);
+    manecilla = mSM->getSceneNode("minutero");
+    manecilla->setScale(0.03f, 0.7f, 0.03f);
+    manecilla->translate(Vector3(0, lenght / 5, 0), Node::TS_LOCAL);
+
+    //mSM->getSceneNode("minutero")->setScale(0.03f, 0.7f, 0.03f);
+    //mSM->getSceneNode("minutero")->translate(0, lenght / 4, 0);
+    //mSM->getSceneNode("minutero")->setPosition((lenght / 4) * Ogre::Math::Cos(Ogre::Degree(90)), (lenght / 4) * Ogre::Math::Sin(Ogre::Degree(90)), 0);
+
+    manecilla = mSM->getSceneNode("segundero");
+    manecilla->setScale(0.01f, 0.8f, 0.01f);
+    manecilla->setPosition(0, 0, 0);
+    manecilla->roll(Degree(-230), Node::TS_WORLD);
+    manecilla->translate(Vector3(0, lenght / 5, 0), Node::TS_LOCAL);
+    manecilla->translate(manecilla->convertLocalToWorldPosition(Vector3(0, 0, 0)), Node::TS_WORLD);
+
+    //mSM->getSceneNode("segundero")->setScale(0.01f, 0.8f, 0.01f);
+    //mSM->getSceneNode("segundero")->translate(0, lenght / 4, 0);
+    //mSM->getSceneNode("segundero")->roll(Ogre::Degree(-230), Ogre::Node::TS_PARENT);
+    //mSM->getSceneNode("segundero")->setPosition((lenght / 4) * Ogre::Math::Cos(Ogre::Degree(-140)), (lenght / 4) * Ogre::Math::Sin(Ogre::Degree(-140)), 0);
 }
 //------------------------------------------------------------------------
 void IG2App::scene2()

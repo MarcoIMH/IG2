@@ -45,7 +45,7 @@ bool Molino::keyPressed(const OgreBites::KeyboardEvent& evt)
 		//Truco
 		Ogre::Real radius = esferaNode->convertLocalToWorldPosition(Vector3(0, 0, 0)).distance(aspasNode->convertLocalToWorldPosition(Vector3(0, 0, 0)));
 		aspasNode->setPosition(0, 0, 0);
-		aspasNode->yaw(Ogre::Degree(3), Node::TS_LOCAL);
+		aspasNode->yaw(Ogre::Degree(3), Node::TS_WORLD);
 		aspasNode->translate(0, 0, radius, Node::TS_LOCAL);
 		aspasNode->translate(esferaNode->convertLocalToWorldPosition(Vector3(0, 0, 0)), Node::TS_WORLD);
 	}
