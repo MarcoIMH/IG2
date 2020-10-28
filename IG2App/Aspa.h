@@ -1,19 +1,14 @@
 #pragma once
-#include <OgreSceneNode.h>
-#include <OgreSceneManager.h>
-#include <OgreEntity.h>
-#include <OgreInput.h>
-#include <SDL_keycode.h>
+#include "EntidadIG.h"
 
-class Aspa
-{
+class Aspa: public EntidadIG {
 public:
-	Aspa(Ogre::SceneNode *aN, Ogre::SceneNode* tN, Ogre::SceneNode* cN);
+	Aspa(Ogre::SceneNode * mNode);
 	~Aspa() {};
 
 	void giroAspa(int grados);
+	inline Ogre::SceneNode* const getCilindroNode() { return cilindroNode; }
 protected:
-	Ogre::SceneNode* aspaNode;
 	Ogre::SceneNode* tableroNode;
 	Ogre::SceneNode* cilindroNode;
 };

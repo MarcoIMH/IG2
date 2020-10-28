@@ -1,18 +1,11 @@
 #pragma once
-#include <OgreSceneNode.h>
-#include <OgreSceneManager.h>
-#include <OgreEntity.h>
-#include <OgreInput.h>
-#include <SDL_keycode.h>
-
 #include "AspasMolino.h"
 
 using namespace Ogre;
 
-class Avion : public OgreBites::InputListener
-{
+class Avion : public EntidadIG {
 public:
-	Avion(SceneManager* mSM);
+	Avion(SceneNode *mNode);
 	~Avion() {
 		delete aspaD;
 		delete aspaI;

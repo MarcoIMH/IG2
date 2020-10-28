@@ -1,9 +1,9 @@
 #include "Aspa.h"
 
-Aspa::Aspa(Ogre::SceneNode* aN, Ogre::SceneNode* tN, Ogre::SceneNode* cN):
-    aspaNode(aN), tableroNode(tN), cilindroNode(cN)
+Aspa::Aspa(Ogre::SceneNode* mNode): EntidadIG(mNode)
 { 
-    Ogre::SceneManager* mSM = aN->getCreator();
+    tableroNode = mNode->createChildSceneNode();
+    cilindroNode = mNode->createChildSceneNode();
 
     Ogre::Entity* ent = mSM->createEntity("cube.mesh");
     tableroNode->attachObject(ent);

@@ -1,15 +1,12 @@
 #pragma 
 #include "AspasMolino.h"
 
-
-class Molino: public OgreBites::InputListener
-{
+class Molino: public EntidadIG{
 public:
-	Molino(SceneManager* mSM);
+	Molino(SceneNode *mNode);
 	~Molino();
 	virtual bool keyPressed(const OgreBites::KeyboardEvent& evt);  // InputListener
 private:
-	SceneNode* mNode;
 	SceneNode* nodoFicticioCentro;
 	SceneNode* cilindroNode;
 	SceneNode* esferaNode;

@@ -1,6 +1,6 @@
 #include "Molino.h"
 
-Molino::Molino(SceneManager* mSM)
+Molino::Molino(SceneNode *mNode): EntidadIG(mNode)
 {
 	mNode = mSM->getRootSceneNode()->createChildSceneNode("molino");
 	nodoFicticioCentro = mNode->createChildSceneNode();

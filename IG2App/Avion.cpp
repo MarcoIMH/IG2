@@ -1,6 +1,6 @@
 #include "Avion.h"
 
-Avion::Avion(SceneManager* mSM)
+Avion::Avion(SceneNode* mNode): EntidadIG(mNode)
 {
 	mNode = mSM->getRootSceneNode()->createChildSceneNode();
 	cuerpoNode = mNode->createChildSceneNode();

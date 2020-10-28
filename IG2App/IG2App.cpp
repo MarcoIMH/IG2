@@ -306,7 +306,8 @@ void IG2App::scene2()
         cilindroNode->roll(Ogre::Degree(-x * ang));
     }*/
 
-    molino = new Molino(mSM);
+    SceneNode* molinoNode = mSM->getRootSceneNode()->createChildSceneNode("molino");
+    molino = new Molino(molinoNode);
     addInputListener(molino);
 }
 void IG2App::scene3()
@@ -339,7 +340,8 @@ void IG2App::scene3()
 }
 
 void IG2App::scene4() {
-    avion = new Avion(mSM);
+    SceneNode* avionNode = mSM->getRootSceneNode()->createChildSceneNode("avion");
+    avion = new Avion(avionNode);
     addInputListener(avion);
 }
 
