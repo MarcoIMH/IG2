@@ -11,6 +11,7 @@ EntidadIG::EntidadIG(Ogre::SceneNode* node)
 
 EntidadIG::~EntidadIG()
 {
+	appListeners.clear();
 }
 
 void EntidadIG::addListener(EntidadIG* entidad)

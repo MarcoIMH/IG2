@@ -6,8 +6,10 @@
 #include <OgreSceneNode.h>
 #include <OgreTrays.h>
 #include <OgreCameraMan.h>
+#include "EntidadIG.h"
 #include "Molino.h"
 #include "Avion.h"
+#include "Plano.h"
 
 
 class IG2App : public  OgreBites::IG2ApplicationContext, OgreBites::InputListener 
@@ -40,9 +42,7 @@ private:
     void scene4();
     void scene5();
     void scene6();
-    int sc2Numaspas = 12;
-    Molino* molino;
-    Avion* avion;
+    std::vector<EntidadIG*> sceneObjects;
 };
 
 #endif

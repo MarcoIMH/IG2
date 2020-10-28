@@ -40,6 +40,8 @@ Avion::Avion(SceneNode* mNode): EntidadIG(mNode)
 	heliceDNode->scale(Vector3(0.5f, 0.5f, 0.5f));
 	heliceINode->translate(Vector3(-350, 0, 70));
 	heliceINode->scale(Vector3(0.5f, 0.5f, 0.5f));
+
+	appListeners.push_back(this);
 }
 
 bool Avion::keyPressed(const OgreBites::KeyboardEvent& evt)

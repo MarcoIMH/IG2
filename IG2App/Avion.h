@@ -11,9 +11,8 @@ public:
 		delete aspaI;
 	}
 
-	virtual bool keyPressed(const OgreBites::KeyboardEvent& evt);  // InputListener
+	virtual bool keyPressed(const OgreBites::KeyboardEvent& evt) override;  // InputListener
 private:
-	SceneNode* mNode;
 	SceneNode* cuerpoNode;
 	SceneNode* alaINode;
 	SceneNode* alaDNode;

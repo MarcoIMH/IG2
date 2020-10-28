@@ -5,6 +5,9 @@
 #include <OgreInput.h>
 #include <SDL_keycode.h>
 #include <vector>
+
+using namespace Ogre;
+
 class EntidadIG: public OgreBites::InputListener
 {
 public:
@@ -23,8 +26,6 @@ public:
 
 protected:
 	Ogre::SceneNode* mNode;
-	Ogre::SceneManager* mSM;
-
-	
+	Ogre::SceneManager* mSM;	
 };
 

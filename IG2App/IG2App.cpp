@@ -4,7 +4,6 @@
 #include <OgreInput.h>
 #include <SDL_keycode.h>
 #include <OgreMeshManager.h>
-
 #include <iostream>
 
 using namespace Ogre;
@@ -64,15 +63,12 @@ void IG2App::shutdown()
   delete mTrayMgr;  mTrayMgr = nullptr;
   delete mCamMgr; mCamMgr = nullptr;
 
-  if (molino != nullptr) {
-      delete molino;
-      molino = nullptr;
+  for (auto e : sceneObjects) {
+      delete e;
+      e = nullptr;
   }
-  if (avion != nullptr) {
-      delete avion;
-      avion = nullptr;
-  }
-  
+  sceneObjects.clear();
+
   // do not forget to call the base 
   IG2ApplicationContext::shutdown();
 }
@@ -150,7 +146,7 @@ void IG2App::setupScene(void)
   //mCamMgr->setYawPitchDist(Radian(0), Degree(30), 100);
 
   //------------------------------------------------------------------------
-  setScene(2);
+  setScene(6);
   switch (sceneId) {
   case 0: scene0(); break;
   case 1: scene1(); break;
@@ -158,7 +154,7 @@ void IG2App::setupScene(void)
   case 3: scene3(); break;  // Sistema solar
   case 4: scene4(); break;  // Avión
   case 5: scene5(); break;  // Plano Antes de Entidad IG
-  case 6: scene6(); break;
+  case 6: scene6(); break;  // Plano y molino después de Entidad IG
   }
 }
 //------------------------------------------------------------------------
@@ -308,7 +304,8 @@ void IG2App::scene2()
     }*/
 
     SceneNode* molinoNode = mSM->getRootSceneNode()->createChildSceneNode("molino");
-    molino = new Molino(molinoNode);   
+    Molino* m = new Molino(molinoNode);   
+    sceneObjects.push_back(m);
     //EntidadIG::addListener(molino);
     //addInputListener(molino);
 }
@@ -343,8 +340,8 @@ void IG2App::scene3()
 
 void IG2App::scene4() {
     SceneNode* avionNode = mSM->getRootSceneNode()->createChildSceneNode("avion");
-    avion = new Avion(avionNode);
-    addInputListener(avion);
+    Avion* a = new Avion(avionNode);
+    sceneObjects.push_back(a);
 }
 
 void IG2App::scene5()
@@ -360,7 +357,14 @@ void IG2App::scene5()
 
 void IG2App::scene6()
 {
+    SceneNode* molinoNode = mSM->getRootSceneNode()->createChildSceneNode("molino");
+    Molino* m = new Molino(molinoNode);
+    sceneObjects.push_back(m);
+    molinoNode->translate(460, 190, -240);
 
+    SceneNode* planoNode = mSM->getRootSceneNode()->createChildSceneNode("plano");
+    Plano* p = new Plano(planoNode);
+    sceneObjects.push_back(p);
 }
    
 //------------------------------------------------------------------------
