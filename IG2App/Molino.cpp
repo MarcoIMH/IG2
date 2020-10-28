@@ -1,8 +1,8 @@
 #include "Molino.h"
+#include <OgreFrameListener.h>
 
 Molino::Molino(SceneNode *mNode): EntidadIG(mNode)
 {
-	mNode = mSM->getRootSceneNode()->createChildSceneNode("molino");
 	nodoFicticioCentro = mNode->createChildSceneNode();
 	//aspasNode = nodoFicticioCentro->createChildSceneNode("aspas");	//ficticio
 	aspasNode = mNode->createChildSceneNode("aspas");	//(truco)
@@ -23,6 +23,11 @@ Molino::Molino(SceneNode *mNode): EntidadIG(mNode)
 	esferaNode->translate(0, 30, -80);
 
 	aspas = new AspasMolino(6, aspasNode);
+	aspasNode->translate(0, 30, 0);
+
+	appListeners.push_back(this);
+
+	EntidadIG::addListener(this);
 }
 
 Molino::~Molino()
@@ -50,4 +55,10 @@ bool Molino::keyPressed(const OgreBites::KeyboardEvent& evt)
 		aspasNode->translate(esferaNode->convertLocalToWorldPosition(Vector3(0, 0, 0)), Node::TS_WORLD);
 	}
 	return false;
+}
+
+void Molino::frameRendered(const Ogre::FrameEvent& evnt)
+{
+	Ogre::Real time = evnt.timeSinceLastFrame;		
+	aspas->giroAspasMolino(time * 8);
 }

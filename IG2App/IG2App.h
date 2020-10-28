@@ -39,6 +39,7 @@ private:
     void scene3();
     void scene4();
     void scene5();
+    void scene6();
     int sc2Numaspas = 12;
     Molino* molino;
     Avion* avion;

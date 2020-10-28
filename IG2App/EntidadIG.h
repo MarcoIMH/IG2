@@ -18,10 +18,13 @@ public:
 
 	void sendEvent(EntidadIG* entidad);
 	virtual void receiveEvent(EntidadIG* entidad) {};
+
+	virtual bool keyPressed(const OgreBites::KeyboardEvent& evnt);
+
 protected:
 	Ogre::SceneNode* mNode;
 	Ogre::SceneManager* mSM;
 
-	virtual bool keyPressed(const OgreBites::KeyboardEvent& evnt);	
+	
 };
 

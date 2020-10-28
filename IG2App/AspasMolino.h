@@ -10,7 +10,7 @@ public:
 	AspasMolino(int numAspas_, SceneNode* mNode);
 	~AspasMolino();
 
-	void giroAspasMolino(int grados = 3);
+	void giroAspasMolino(Ogre::Real grados = 3);
 	void esconderCilindro();
 protected:
 	SceneNode* cilindroCentral;

@@ -15,7 +15,7 @@ Aspa::Aspa(Ogre::SceneNode* mNode): EntidadIG(mNode)
     cilindroNode->setScale(1.5f, 4.0f, 1.5f);
 }
 
-void Aspa::giroAspa(int grados)
+void Aspa::giroAspa(Ogre::Real grados)
 {
     cilindroNode->roll(Ogre::Degree(-grados));
 }

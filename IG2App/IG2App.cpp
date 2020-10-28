@@ -150,14 +150,15 @@ void IG2App::setupScene(void)
   //mCamMgr->setYawPitchDist(Radian(0), Degree(30), 100);
 
   //------------------------------------------------------------------------
-  setScene(5);
+  setScene(2);
   switch (sceneId) {
   case 0: scene0(); break;
   case 1: scene1(); break;
-  case 2: scene2(); break;
-  case 3: scene3(); break;
-  case 4: scene4(); break;
-  case 5: scene5(); break;
+  case 2: scene2(); break;  // Molino
+  case 3: scene3(); break;  // Sistema solar
+  case 4: scene4(); break;  // Avión
+  case 5: scene5(); break;  // Plano Antes de Entidad IG
+  case 6: scene6(); break;
   }
 }
 //------------------------------------------------------------------------
@@ -307,8 +308,9 @@ void IG2App::scene2()
     }*/
 
     SceneNode* molinoNode = mSM->getRootSceneNode()->createChildSceneNode("molino");
-    molino = new Molino(molinoNode);
-    addInputListener(molino);
+    molino = new Molino(molinoNode);   
+    //EntidadIG::addListener(molino);
+    //addInputListener(molino);
 }
 void IG2App::scene3()
 {
@@ -354,6 +356,11 @@ void IG2App::scene5()
     Entity* ent = mSM->createEntity("mPlane1080x800");
     SceneNode* planeNode = mSM->getRootSceneNode();
     planeNode->attachObject(ent);
+}
+
+void IG2App::scene6()
+{
+
 }
    
 //------------------------------------------------------------------------

@@ -6,7 +6,7 @@ public:
 	Aspa(Ogre::SceneNode * mNode);
 	~Aspa() {};
 
-	void giroAspa(int grados);
+	void giroAspa(Ogre::Real grados);
 	inline Ogre::SceneNode* const getCilindroNode() { return cilindroNode; }
 protected:
 	Ogre::SceneNode* tableroNode;

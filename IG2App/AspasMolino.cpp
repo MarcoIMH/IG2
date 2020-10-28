@@ -40,7 +40,7 @@ AspasMolino::~AspasMolino()
 }
 
 
-void AspasMolino::giroAspasMolino(int grados)
+void AspasMolino::giroAspasMolino(Ogre::Real grados)
 {
     mNode->roll(Ogre::Degree(grados));
 
