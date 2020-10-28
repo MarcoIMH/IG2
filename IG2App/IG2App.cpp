@@ -150,13 +150,14 @@ void IG2App::setupScene(void)
   //mCamMgr->setYawPitchDist(Radian(0), Degree(30), 100);
 
   //------------------------------------------------------------------------
-  setScene(1);
+  setScene(5);
   switch (sceneId) {
   case 0: scene0(); break;
   case 1: scene1(); break;
   case 2: scene2(); break;
   case 3: scene3(); break;
   case 4: scene4(); break;
+  case 5: scene5(); break;
   }
 }
 //------------------------------------------------------------------------
@@ -341,4 +342,16 @@ void IG2App::scene4() {
     avion = new Avion(mSM);
     addInputListener(avion);
 }
+
+void IG2App::scene5()
+{
+    MeshManager::getSingleton().createPlane("mPlane1080x800",
+        ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+        Plane(Vector3::UNIT_Y, 0),
+        1080, 800, 100, 80, true, 1, 1.0, 1.0, Vector3::NEGATIVE_UNIT_Z);
+    Entity* ent = mSM->createEntity("mPlane1080x800");
+    SceneNode* planeNode = mSM->getRootSceneNode();
+    planeNode->attachObject(ent);
+}
+   
 //------------------------------------------------------------------------
