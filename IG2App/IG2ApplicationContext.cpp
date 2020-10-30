@@ -24,8 +24,6 @@ Adaptado de OgreApplicationContext.cpp  en OGREbites\src
 #include <SDL_syswm.h>
 #include <SDLInputMapping.h>
 
-#include "EntidadIG.h"
-
 namespace OgreBites {
 
 	IG2ApplicationContext::IG2ApplicationContext(const Ogre::String& appName)
@@ -221,9 +219,6 @@ namespace OgreBites {
 		{
 			(*it)->frameRendered(evt);
 		}
-		for (auto ent : EntidadIG::appListeners) {
-			ent->frameRendered(evt);
-		}
 
 		return true;
 	}
@@ -301,16 +296,6 @@ namespace OgreBites {
 				break;
 			}
 			
-		}
-		for (auto ent: EntidadIG::appListeners)
-		{
-			switch (event.type)
-			{
-			case KEYDOWN:
-				ent->keyPressed(event.key);
-				break;
-			default:break;
-			}
 		}
 	}
 

@@ -134,18 +134,6 @@ void IG2App::setupScene(void)
 
   // finally something to render
 
-
-
-  //------------------------------------------------------------------------
-
-  mCamMgr = new OgreBites::CameraMan(mCamNode);
-  addInputListener(mCamMgr);
-  mCamMgr->setStyle(OgreBites::CS_ORBIT);  
-  
-  //mCamMgr->setTarget(mSinbadNode);  
-  //mCamMgr->setYawPitchDist(Radian(0), Degree(30), 100);
-
-  //------------------------------------------------------------------------
   setScene(6);
   switch (sceneId) {
   case 0: scene0(); break;
@@ -155,6 +143,19 @@ void IG2App::setupScene(void)
   case 4: scene4(); break;  // Avión
   case 5: scene5(); break;  // Plano Antes de Entidad IG
   case 6: scene6(); break;  // Plano y molino después de Entidad IG
+  }
+
+  //------------------------------------------------------------------------
+
+  mCamMgr = new OgreBites::CameraMan(mCamNode);
+  addInputListener(mCamMgr);
+  mCamMgr->setStyle(OgreBites::CS_ORBIT);  
+  
+  //mCamMgr->setTarget(mSinbadNode);  
+  //mCamMgr->setYawPitchDist(Radian(0), Degree(30), 100);
+  //------------------------------------------------------------------------
+  for (EntidadIG* entity : EntidadIG::appListeners) {
+      addInputListener(entity);
   }
 }
 //------------------------------------------------------------------------
