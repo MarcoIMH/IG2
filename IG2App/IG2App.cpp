@@ -358,14 +358,47 @@ void IG2App::scene5()
 
 void IG2App::scene6()
 {
-    SceneNode* molinoNode = mSM->getRootSceneNode()->createChildSceneNode("molino");
-    Molino* m = new Molino(molinoNode);
-    sceneObjects.push_back(m);
-    molinoNode->translate(460, 190, -240);
-
-    SceneNode* planoNode = mSM->getRootSceneNode()->createChildSceneNode("plano");
-    Plano* p = new Plano(planoNode);
+    //AGUA
+    SceneNode* planoAguaNode = mSM->getRootSceneNode()->createChildSceneNode();
+    Plano* p = new Plano(planoAguaNode, "PlanoAgua");
     sceneObjects.push_back(p);
+
+    //MOLINO Y SU PLANO
+    SceneNode* molinoNode = mSM->getRootSceneNode()->createChildSceneNode();
+    Molino* m = new Molino(molinoNode);     
+    sceneObjects.push_back(m);
+    //Transformaciones molino
+    molinoNode->translate(450, 190, -240);
+
+    SceneNode* planoMolinoNode = mSM->getRootSceneNode()->createChildSceneNode();
+    Plano* pM = new Plano(planoMolinoNode, "PlanoMolino");    
+    sceneObjects.push_back(pM);
+    //Transformaciones plano molino
+    planoMolinoNode->scale(0.2f, 1.0f, 0.3f);
+    planoMolinoNode->translate(430, 0, -280);
+
+    //SINBAD Y SU PLANO
+    SceneNode* sinbadNode = mSM->getRootSceneNode()->createChildSceneNode();
+    Entity* sinbad = mSM->createEntity("Sinbad.mesh");    
+    sinbadNode->attachObject(sinbad);
+    //Transformaciones sinbad
+    sinbadNode->setScale(8, 8, 8);
+    sinbadNode->translate(-300, 40, 200);
+
+    SceneNode* planoSinbadNode = mSM->getRootSceneNode()->createChildSceneNode();
+    Plano* pS = new Plano(planoSinbadNode, "PlanoSinbad");    
+    sceneObjects.push_back(pS);
+    //Transformaciones plano sinbad
+    planoSinbadNode->translate(-300, 0, 200);
+    planoSinbadNode->setScale(0.3f, 1.0f, 0.4f);
+
+    //AVION
+    SceneNode* avionNode = mSM->getRootSceneNode()->createChildSceneNode();
+    Avion* avion = new Avion(avionNode);
+    sceneObjects.push_back(avion);  
+    //Transformaciones AVion
+    avionNode->setScale(0.1f, 0.1f, 0.1f);
+    avionNode->translate(0, 400, 0);
 }
    
 //------------------------------------------------------------------------

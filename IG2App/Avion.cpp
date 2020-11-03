@@ -2,7 +2,6 @@
 
 Avion::Avion(SceneNode* mNode): EntidadIG(mNode)
 {
-	mNode = mSM->getRootSceneNode()->createChildSceneNode();
 	cuerpoNode = mNode->createChildSceneNode();
 	alaINode = mNode->createChildSceneNode();
 	alaDNode = mNode->createChildSceneNode();
