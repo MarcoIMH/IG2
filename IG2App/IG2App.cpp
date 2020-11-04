@@ -14,16 +14,22 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
   {
     getRoot()->queueEndRendering();
   }
-  else if (evt.keysym.sym == SDLK_g) {
-      if (sceneId == 1) {
-          mSM->getSceneNode("clock")->roll(Ogre::Degree(3));    //Rota reloj
-          mSM->getSceneNode("manecillas")->roll(Ogre::Degree(3));    //Rota manecillas
+  else if (evt.keysym.sym == SDLK_h) {
+      if (sceneId == 1) {     
+          SceneNode* centro = mSM->getSceneNode("manecillas");    
+          SceneNode* segundero = mSM->getSceneNode("segundero");   
+
+          Ogre::Real distanciaAlCentro = centro->convertLocalToWorldPosition(Vector3(0, 0, 0)).distance(segundero->convertLocalToWorldPosition(Vector3(0, 0, 0)));
+          segundero->setPosition(0, 0, 0);
+          segundero->roll(Ogre::Degree(3), Ogre::Node::TS_WORLD);
+          segundero->translate(Vector3(0, distanciaAlCentro, 0), Ogre::Node::TS_LOCAL);
+          segundero->translate(centro->convertLocalToWorldPosition(Vector3(0, 0, 0)), Ogre::Node::TS_WORLD);
       }
   }
-  else if (evt.keysym.sym == SDLK_h) {
+  else if (evt.keysym.sym == SDLK_g) {
       if (sceneId == 1) {
           if (mSM->getSceneNode("clock") != nullptr) {
-              mSM->getSceneNode("clock")->roll(Ogre::Degree(3));    //Rota reloj
+              mSM->getSceneNode("manecillas")->roll(Ogre::Degree(3));    //Rota reloj
           }
       }   
   }
@@ -134,7 +140,7 @@ void IG2App::setupScene(void)
 
   // finally something to render
 
-  setScene(6);
+  setScene(1);
   switch (sceneId) {
   case 0: scene0(); break;
   case 1: scene1(); break;
@@ -236,7 +242,7 @@ void IG2App::scene1()   //Ejercicio15
     manecilla->setPosition(0, 0, 0);
     manecilla->roll(Degree(-90), Node::TS_WORLD);
     manecilla->translate(Vector3(0, lenght / 8, 0), Node::TS_LOCAL);
-    manecilla->translate(manecilla->convertLocalToWorldPosition(Vector3(0, 0, 0)), Node::TS_WORLD);
+    manecilla->translate(manecillasNode->convertLocalToWorldPosition(Vector3(0, 0, 0)), Node::TS_WORLD);
 
     //mSM->getSceneNode("hora")->translate(0, lenght / 4, 0);
     //mSM->getSceneNode("hora")->roll(Ogre::Degree(-90), Ogre::Node::TS_PARENT);
@@ -255,7 +261,7 @@ void IG2App::scene1()   //Ejercicio15
     manecilla->setPosition(0, 0, 0);
     manecilla->roll(Degree(-230), Node::TS_WORLD);
     manecilla->translate(Vector3(0, lenght / 5, 0), Node::TS_LOCAL);
-    manecilla->translate(manecilla->convertLocalToWorldPosition(Vector3(0, 0, 0)), Node::TS_WORLD);
+    manecilla->translate(manecillasNode->convertLocalToWorldPosition(Vector3(0, 0, 0)), Node::TS_WORLD);
 
     //mSM->getSceneNode("segundero")->setScale(0.01f, 0.8f, 0.01f);
     //mSM->getSceneNode("segundero")->translate(0, lenght / 4, 0);
