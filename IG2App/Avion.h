@@ -25,7 +25,6 @@ private:
 	AspasMolino* aspaI;
 	AspasMolino* aspaD;
 
-	SceneNode* avion;
 	int radioGiro;
 };
 

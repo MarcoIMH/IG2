@@ -1,19 +1,14 @@
 #include "Avion.h"
-#include <iostream>
 
 Avion::Avion(SceneNode* mNode): EntidadIG(mNode)
 {
-	radioGiro = 2000;
+	radioGiro = 200;
 
-	avion = mNode->createChildSceneNode();
-
-	avion->translate(Vector3(-radioGiro, 0, 0), Ogre::Node::TS_LOCAL);
-
-	cuerpoNode = avion->createChildSceneNode();
-	alaINode = avion->createChildSceneNode();
-	alaDNode = avion->createChildSceneNode();
-	frenteNode = avion->createChildSceneNode();
-	pilotoNode = avion->createChildSceneNode();
+	cuerpoNode = mNode->createChildSceneNode();
+	alaINode = mNode->createChildSceneNode();
+	alaDNode = mNode->createChildSceneNode();
+	frenteNode = mNode->createChildSceneNode();
+	pilotoNode = mNode->createChildSceneNode();
 
 	Entity* ent = mSM->createEntity("sphere.mesh");
 	cuerpoNode->attachObject(ent);
@@ -26,8 +21,8 @@ Avion::Avion(SceneNode* mNode): EntidadIG(mNode)
 	ent = mSM->createEntity("ninja.mesh");
 	pilotoNode->attachObject(ent);
 
-	heliceDNode = avion->createChildSceneNode();
-	heliceINode = avion->createChildSceneNode();
+	heliceDNode = mNode->createChildSceneNode();
+	heliceINode = mNode->createChildSceneNode();
 
 	aspaD = new AspasMolino(5, heliceDNode);
 	aspaI = new AspasMolino(5, heliceINode);
@@ -61,5 +56,11 @@ bool Avion::keyPressed(const OgreBites::KeyboardEvent& evt)
 
 void Avion::frameRendered(const Ogre::FrameEvent& evt)
 {
-	mNode->yaw(Ogre::Degree(2));
+	Vector3 centro;
+	mNode->translate(Vector3(radioGiro, 0, 0), Ogre::Node::TS_LOCAL);
+	centro = mNode->convertLocalToWorldPosition(Vector3(0, 0, 0));
+	mNode->setPosition(0, 0, 0);
+	mNode->yaw(Ogre::Degree(3), Ogre::Node::TS_WORLD);
+	mNode->setPosition(centro);
+	mNode->translate(Vector3(-radioGiro, 0, 0), Ogre::Node::TS_LOCAL);
 }

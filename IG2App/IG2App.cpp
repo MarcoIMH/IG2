@@ -414,7 +414,8 @@ void IG2App::scene6()
     //mLightNode = mCamNode->createChildSceneNode("nLuz");
     focoAvion->attachObject(luz);   
 
-    mLightNode->setDirection(Ogre::Vector3(1, -1, 0));  //vec3.normalise();
+    focoAvion->yaw(Ogre::Degree(-90));
+    focoAvion->setDirection(Ogre::Vector3(1, -1, 0));  //vec3.normalise();
 }
    
 //------------------------------------------------------------------------
