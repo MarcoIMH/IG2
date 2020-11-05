@@ -140,7 +140,7 @@ void IG2App::setupScene(void)
 
   // finally something to render
 
-  setScene(1);
+  setScene(6);
   switch (sceneId) {
   case 0: scene0(); break;
   case 1: scene1(); break;
@@ -405,6 +405,16 @@ void IG2App::scene6()
     //Transformaciones AVion
     avionNode->setScale(0.1f, 0.1f, 0.1f);
     avionNode->translate(0, 400, 0);
+
+    Light* luz = mSM->createLight("FocoAvion");
+    luz->setType(Ogre::Light::LT_SPOTLIGHT);
+    luz->setDiffuseColour(0.75, 0.75, 0.75);
+
+    SceneNode* focoAvion = avionNode->createChildSceneNode("nodoFocoAvion");    
+    //mLightNode = mCamNode->createChildSceneNode("nLuz");
+    focoAvion->attachObject(luz);   
+
+    mLightNode->setDirection(Ogre::Vector3(1, -1, 0));  //vec3.normalise();
 }
    
 //------------------------------------------------------------------------

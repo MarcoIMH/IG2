@@ -12,6 +12,7 @@ public:
 	}
 
 	virtual bool keyPressed(const OgreBites::KeyboardEvent& evt) override;  // InputListener
+	virtual void frameRendered(const Ogre::FrameEvent& evt) override;
 private:
 	SceneNode* cuerpoNode;
 	SceneNode* alaINode;
@@ -23,5 +24,8 @@ private:
 
 	AspasMolino* aspaI;
 	AspasMolino* aspaD;
+
+	SceneNode* avion;
+	int radioGiro;
 };
 
