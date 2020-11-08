@@ -25,6 +25,9 @@ private:
 	AspasMolino* aspaI;
 	AspasMolino* aspaD;
 
+	Light* luz;
+
 	int radioGiro;
+	bool r_event = false;
 };
 

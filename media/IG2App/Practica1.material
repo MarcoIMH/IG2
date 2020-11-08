@@ -1,0 +1,112 @@
+material Practica1/Red{
+	technique{
+		pass{
+			diffuse 1.0 0.0 0.0
+		}
+	}
+}
+
+material Practica1/Yellow{
+	technique{
+		pass{
+			diffuse 1.0 1.0 0.0
+		}
+	}
+}
+
+material Practica1/Brown{
+	technique{
+		pass{
+			diffuse 0.4 0.13 0.0
+		}
+	}
+}
+
+material Practica1/Fucsia{
+	technique{
+		pass{
+			diffuse 0.0 0.53 0.80
+		}
+	}
+}
+
+material Practica1/NoFucsia{
+	technique{
+		pass{
+			diffuse 0.0 0.53 0.80 0.0
+		}
+	}
+}
+
+
+material Practica1/Orange{
+	technique{
+		pass{
+			diffuse 1.0 0.33 0.0
+		}
+	}
+}
+
+material Practica1/Metal{
+	technique{
+		pass{
+			diffuse 0.2 0.2 0.2
+			texture_unit{
+				texture metal.jpg
+				colour_op modulate
+			}
+		}
+	}
+}
+
+material Practica1/Floor{
+	technique{
+		pass{
+			texture_unit{
+				texture floor.png
+			}
+		}
+	}
+}
+
+material Practica1/HappyFace{
+	technique{
+		pass{
+			texture_unit{
+				texture happyface.png
+				env_map spherical
+			}
+		}
+	}
+}
+
+material Practica1/Checker{
+	technique{
+		pass{
+			texture_unit{
+				texture checker.png
+			}
+		}
+	}
+}
+
+material Practica1/Water{
+	technique{
+		pass{
+			texture_unit{
+				texture water.jpg
+				scroll_anim -0.1 0.0
+			}
+		}
+	}
+}
+
+material Practica1/WaterWithStones{
+	technique{
+		pass{
+			texture_unit{
+				texture waterstones.jpg
+			}
+		}
+	}
+}

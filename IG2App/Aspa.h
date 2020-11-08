@@ -8,8 +8,11 @@ public:
 
 	void giroAspa(Ogre::Real grados);
 	inline Ogre::SceneNode* const getCilindroNode() { return cilindroNode; }
+	void setAdornoTexture(std::string texture);
+	void setAdornoVisible(bool v);
 protected:
 	Ogre::SceneNode* tableroNode;
 	Ogre::SceneNode* cilindroNode;
+	Entity* adorno;
 };
 

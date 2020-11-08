@@ -8,6 +8,11 @@ Plano::Plano(Ogre::SceneNode* mNode, std::string nombre, float w, float h) : Ent
         Plane(Vector3::UNIT_Y, 0),
         1080, 800, 100, 80, true, 1, 1.0, 1.0, Vector3::NEGATIVE_UNIT_Z);
 
-    Entity* ent = mSM->createEntity(nombre);
+    ent = mSM->createEntity(nombre);
     mNode->attachObject(ent);
+}
+
+void Plano::setTexture(std::string texture)
+{
+    ent->setMaterialName(texture);
 }

@@ -12,13 +12,15 @@ Molino::Molino(SceneNode *mNode): EntidadIG(mNode)
 	nodoFicticioCentro->translate(0, 30, -80);
 	//aspasNode->translate(0, 0, 80);
 
-	Entity* ent = mSM->createEntity("Barrel.mesh");
+	Entity* ent = mSM->createEntity("Barrel.mesh"); //CUERPO DEL MOLINO
+	ent->setMaterialName("Practica1/Floor"); 
 	cilindroNode->attachObject(ent);
 	cilindroNode->setScale(28, 30, 28);
 	cilindroNode->translate(0, -100, -80);
 
-	ent = mSM->createEntity("sphere.mesh");
-	esferaNode->attachObject(ent);
+	cupula = mSM->createEntity("sphere.mesh");		//PARTE SUPERIOR ESFÉRICA DEL MOLINO
+	cupula->setMaterialName("Practica1/Yellow");
+	esferaNode->attachObject(cupula);
 	esferaNode->setScale(0.8f, 0.8f, 0.8f);
 	esferaNode->translate(0, 30, -80);
 
@@ -53,6 +55,17 @@ bool Molino::keyPressed(const OgreBites::KeyboardEvent& evt)
 		aspasNode->yaw(Ogre::Degree(3), Node::TS_WORLD);
 		aspasNode->translate(0, 0, radius, Node::TS_LOCAL);
 		aspasNode->translate(esferaNode->convertLocalToWorldPosition(Vector3(0, 0, 0)), Node::TS_WORLD);
+	}
+	if (evt.keysym.sym == SDLK_r) {
+		if (!r_event) {
+			cupula->setMaterialName("Practica1/Red");		
+			aspas->ocultaCilindros();
+		}
+		else {
+			cupula->setMaterialName("Practica1/Yellow");
+			aspas->muestraCilindros();
+		}
+		r_event = !r_event;
 	}
 	return false;
 }

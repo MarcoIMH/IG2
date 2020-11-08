@@ -12,6 +12,8 @@ public:
 
 	void giroAspasMolino(Ogre::Real grados = 3);
 	void esconderCilindro();
+	void ocultaCilindros();
+	void muestraCilindros();
 protected:
 	SceneNode* cilindroCentral;
 	int numAspas;

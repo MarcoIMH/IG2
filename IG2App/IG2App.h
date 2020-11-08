@@ -43,6 +43,7 @@ private:
     void scene5();
     void scene6();
     std::vector<EntidadIG*> sceneObjects;
+    Plano* water;
 };
 
 #endif

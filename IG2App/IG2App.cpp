@@ -5,6 +5,7 @@
 #include <SDL_keycode.h>
 #include <OgreMeshManager.h>
 #include <iostream>
+#include "Simbad.h"
 
 using namespace Ogre;
 
@@ -54,7 +55,11 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
           }
       }
   }
-  //else if (evt.keysym.sym == SDLK_???)
+  else if (evt.keysym.sym == SDLK_r) {
+      if (sceneId == 6) {
+          water->setTexture("Practica1/WaterWithStones");
+      }
+  }
   
   return true;
 }
@@ -121,7 +126,7 @@ void IG2App::setupScene(void)
 
   //------------------------------------------------------------------------
 
-  // without light we would just get a black screen 
+  // without light we would just get a black screen   
 
   Light* luz = mSM->createLight("Luz");
   luz->setType(Ogre::Light::LT_DIRECTIONAL);
@@ -364,10 +369,14 @@ void IG2App::scene5()
 
 void IG2App::scene6()
 {
+    //mSM->_setDestinationRenderSystem(Ogre::RenderSystem::)
+    //mSM->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
+
     //AGUA
-    SceneNode* planoAguaNode = mSM->getRootSceneNode()->createChildSceneNode();
-    Plano* p = new Plano(planoAguaNode, "PlanoAgua");
-    sceneObjects.push_back(p);
+    SceneNode* planoAguaNode = mSM->getRootSceneNode()->createChildSceneNode("PlanoAguaNode");
+    water = new Plano(planoAguaNode, "PlanoAgua");
+    water->setTexture("Practica1/Water");
+    sceneObjects.push_back(water);
 
     //MOLINO Y SU PLANO
     SceneNode* molinoNode = mSM->getRootSceneNode()->createChildSceneNode();
@@ -377,25 +386,30 @@ void IG2App::scene6()
     molinoNode->translate(450, 190, -240);
 
     SceneNode* planoMolinoNode = mSM->getRootSceneNode()->createChildSceneNode();
-    Plano* pM = new Plano(planoMolinoNode, "PlanoMolino");    
+    Plano* pM = new Plano(planoMolinoNode, "PlanoMolino");  
+    pM->setTexture("Practica1/Orange");
     sceneObjects.push_back(pM);
     //Transformaciones plano molino
     planoMolinoNode->scale(0.2f, 1.0f, 0.3f);
-    planoMolinoNode->translate(430, 0, -280);
+    planoMolinoNode->translate(430, 1, -280);
 
     //SINBAD Y SU PLANO
     SceneNode* sinbadNode = mSM->getRootSceneNode()->createChildSceneNode();
-    Entity* sinbad = mSM->createEntity("Sinbad.mesh");    
-    sinbadNode->attachObject(sinbad);
+   /* Entity* sinbad = mSM->createEntity("Sinbad.mesh");    
+    sinbadNode->attachObject(sinbad);*/
+    Simbad* sinbad = new Simbad(sinbadNode);
+    sceneObjects.push_back(sinbad);
+
     //Transformaciones sinbad
     sinbadNode->setScale(8, 8, 8);
     sinbadNode->translate(-300, 40, 200);
 
     SceneNode* planoSinbadNode = mSM->getRootSceneNode()->createChildSceneNode();
-    Plano* pS = new Plano(planoSinbadNode, "PlanoSinbad");    
+    Plano* pS = new Plano(planoSinbadNode, "PlanoSinbad");  
+    pS->setTexture("Practica1/Red");
     sceneObjects.push_back(pS);
     //Transformaciones plano sinbad
-    planoSinbadNode->translate(-300, 0, 200);
+    planoSinbadNode->translate(-300, 1, 200);
     planoSinbadNode->setScale(0.3f, 1.0f, 0.4f);
 
     //AVION
@@ -406,16 +420,16 @@ void IG2App::scene6()
     avionNode->setScale(0.1f, 0.1f, 0.1f);
     avionNode->translate(0, 400, 0);
 
-    Light* luz = mSM->createLight("FocoAvion");
-    luz->setType(Ogre::Light::LT_SPOTLIGHT);
-    luz->setDiffuseColour(0.75, 0.75, 0.75);
+    
 
-    SceneNode* focoAvion = avionNode->createChildSceneNode("nodoFocoAvion");    
-    //mLightNode = mCamNode->createChildSceneNode("nLuz");
-    focoAvion->attachObject(luz);   
 
-    focoAvion->yaw(Ogre::Degree(-90));
-    focoAvion->setDirection(Ogre::Vector3(1, -1, 0));  //vec3.normalise();
+    //HAPPY FACE
+    SceneNode* faceNode = mSM->getRootSceneNode()->createChildSceneNode();
+    Entity* ent = mSM->createEntity("sphere.mesh");
+    ent->setMaterialName("Practica1/HappyFace");
+    faceNode->attachObject(ent);
+    faceNode->setScale(0.2f, 0.2f, 0.2f);
+    faceNode->translate(500, 20, -240);
 }
    
 //------------------------------------------------------------------------

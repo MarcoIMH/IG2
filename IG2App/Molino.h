@@ -13,5 +13,8 @@ private:
 	SceneNode* esferaNode;
 	SceneNode* aspasNode;
 	AspasMolino* aspas;
+
+	Entity* cupula;
+	bool r_event = false;
 };
 

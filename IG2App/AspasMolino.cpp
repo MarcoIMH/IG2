@@ -10,6 +10,7 @@ AspasMolino::AspasMolino(int numAspas_, SceneNode *mNode) :
 
     cilindroCentral = mNode->createChildSceneNode();
     Ogre::Entity* ent = mSM->createEntity("Barrel.mesh");
+    ent->setMaterialName("Practica1/Metal");
     cilindroCentral->attachObject(ent);
 
     cilindroCentral->pitch(Ogre::Degree(90));
@@ -54,6 +55,19 @@ void AspasMolino::esconderCilindro()
     if (!cilindroTransladado) {
         cilindroCentral->translate(0, 0, -11);
         cilindroTransladado = true;
+    }
+}
+
+void AspasMolino::ocultaCilindros()
+{
+    for (int x = 0; x < numAspas; x++) {
+        arrayAspas[x]->setAdornoVisible(false);
+    }
+}
+
+void AspasMolino::muestraCilindros() {
+    for (int x = 0; x < numAspas; x++) {
+        arrayAspas[x]->setAdornoVisible(true);
     }
 }
 

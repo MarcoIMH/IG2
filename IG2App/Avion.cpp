@@ -11,14 +11,23 @@ Avion::Avion(SceneNode* mNode): EntidadIG(mNode)
 	pilotoNode = mNode->createChildSceneNode();
 
 	Entity* ent = mSM->createEntity("sphere.mesh");
+	ent->setMaterialName("Practica1/Red");
 	cuerpoNode->attachObject(ent);
+
 	ent = mSM->createEntity("cube.mesh");
+	ent->setMaterialName("Practica1/Checker");
 	alaINode->attachObject(ent);
+
 	ent = mSM->createEntity("cube.mesh");
+	ent->setMaterialName("Practica1/Checker");
 	alaDNode->attachObject(ent);
+
 	ent = mSM->createEntity("Barrel.mesh");
+	ent->setMaterialName("Practica1/Orange");
 	frenteNode->attachObject(ent);
+
 	ent = mSM->createEntity("ninja.mesh");
+	ent->setMaterialName("Practica1/Yellow");
 	pilotoNode->attachObject(ent);
 
 	heliceDNode = mNode->createChildSceneNode();
@@ -42,6 +51,18 @@ Avion::Avion(SceneNode* mNode): EntidadIG(mNode)
 	heliceINode->translate(Vector3(-350, 0, 70));
 	heliceINode->scale(Vector3(0.5f, 0.5f, 0.5f));
 
+	//LUZ AVIÓN
+	luz = mSM->createLight();
+	luz->setType(Ogre::Light::LT_SPOTLIGHT);
+	luz->setDiffuseColour(0.75, 0.75, 0.75);
+
+	SceneNode* focoAvion = mNode->createChildSceneNode();
+	//mLightNode = mCamNode->createChildSceneNode("nLuz");
+	focoAvion->attachObject(luz);
+
+	focoAvion->yaw(Ogre::Degree(-90));
+	focoAvion->setDirection(Ogre::Vector3(1, -1, 0));  //vec3.normalise();
+
 	appListeners.push_back(this);
 }
 
@@ -51,16 +72,25 @@ bool Avion::keyPressed(const OgreBites::KeyboardEvent& evt)
 		aspaD->giroAspasMolino(-3);
 		aspaI->giroAspasMolino(-3);
 	}
+	else if (evt.keysym.sym == SDLK_r) {
+		luz->setVisible(r_event);
+		r_event = !r_event;
+	}
 	return false;
 }
 
 void Avion::frameRendered(const Ogre::FrameEvent& evt)
 {
-	Vector3 centro;
-	mNode->translate(Vector3(radioGiro, 0, 0), Ogre::Node::TS_LOCAL);
-	centro = mNode->convertLocalToWorldPosition(Vector3(0, 0, 0));
-	mNode->setPosition(0, 0, 0);
-	mNode->yaw(Ogre::Degree(3), Ogre::Node::TS_WORLD);
-	mNode->setPosition(centro);
-	mNode->translate(Vector3(-radioGiro, 0, 0), Ogre::Node::TS_LOCAL);
+	if (!r_event) {
+		Vector3 centro;
+		mNode->translate(Vector3(radioGiro, 0, 0), Ogre::Node::TS_LOCAL);
+		centro = mNode->convertLocalToWorldPosition(Vector3(0, 0, 0));
+		mNode->setPosition(0, 0, 0);
+		mNode->yaw(Ogre::Degree(1), Ogre::Node::TS_WORLD);
+		mNode->setPosition(centro);
+		mNode->translate(Vector3(-radioGiro, 0, 0), Ogre::Node::TS_LOCAL);		
+	}	
+
+	aspaD->giroAspasMolino(-3);
+	aspaI->giroAspasMolino(-3);
 }
