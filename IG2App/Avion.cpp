@@ -62,6 +62,7 @@ Avion::Avion(SceneNode* mNode): EntidadIG(mNode)
 
 	focoAvion->yaw(Ogre::Degree(-90));
 	focoAvion->setDirection(Ogre::Vector3(1, -1, 0));  //vec3.normalise();
+	focoAvion->translate(0, -10, 0, Ogre::Node::TS_LOCAL);
 
 	appListeners.push_back(this);
 }

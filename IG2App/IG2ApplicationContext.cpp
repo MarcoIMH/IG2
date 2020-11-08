@@ -48,7 +48,7 @@ namespace OgreBites {
 		createRoot();
 
 		//Call config dialog at the proyect opening
-		//mRoot->showConfigDialog(OgreBites::getNativeConfigDialog());
+		mRoot->showConfigDialog(OgreBites::getNativeConfigDialog());
 
 		if (oneTimeConfig())
 			setup();

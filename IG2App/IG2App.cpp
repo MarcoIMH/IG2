@@ -369,8 +369,7 @@ void IG2App::scene5()
 
 void IG2App::scene6()
 {
-    //mSM->_setDestinationRenderSystem(Ogre::RenderSystem::)
-    //mSM->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
+    mSM->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
 
     //AGUA
     SceneNode* planoAguaNode = mSM->getRootSceneNode()->createChildSceneNode("PlanoAguaNode");
