@@ -6,6 +6,7 @@
 #include <OgreMeshManager.h>
 #include <iostream>
 #include "Simbad.h"
+#include "Boya.h"
 
 using namespace Ogre;
 
@@ -417,8 +418,10 @@ void IG2App::scene6()
     avionNode->setScale(0.1f, 0.1f, 0.1f);
     avionNode->translate(0, 400, 0);
 
-    
-
+    SceneNode* boyaNode = mSM->getRootSceneNode()->createChildSceneNode();
+    Boya* boya = new Boya(boyaNode);
+    boyaNode->scale(Vector3(5, 5, 5));
+    sceneObjects.push_back(boya);
 
     //HAPPY FACE
     SceneNode* faceNode = mSM->getRootSceneNode()->createChildSceneNode();
