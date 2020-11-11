@@ -9,6 +9,9 @@ public:
 	virtual void frameRendered(const Ogre::FrameEvent& evt) override;
 private:
 	Entity* sinbad;
+	Entity* sword;
+	bool swordLeftHand;
+
 	Ogre::AnimationState* as_Dance;
 	Ogre::AnimationState* as_RunBase;
 	Ogre::AnimationState* as_RunTop;
