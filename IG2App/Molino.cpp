@@ -1,5 +1,4 @@
 #include "Molino.h"
-#include <OgreFrameListener.h>
 
 Molino::Molino(SceneNode *mNode): EntidadIG(mNode)
 {
@@ -28,8 +27,6 @@ Molino::Molino(SceneNode *mNode): EntidadIG(mNode)
 	aspasNode->translate(0, 30, 0);
 
 	appListeners.push_back(this);
-
-	EntidadIG::addListener(this);
 }
 
 Molino::~Molino()

@@ -379,8 +379,8 @@ void IG2App::scene6()
 
     //MOLINO Y SU PLANO
     SceneNode* molinoNode = mSM->getRootSceneNode()->createChildSceneNode();
-    Molino* m = new Molino(molinoNode);     
-    sceneObjects.push_back(m);
+    Molino* molino = new Molino(molinoNode);     
+    sceneObjects.push_back(molino);
     //Transformaciones molino
     molinoNode->translate(450, 190, -240);
 
@@ -394,8 +394,6 @@ void IG2App::scene6()
 
     //SINBAD Y SU PLANO
     SceneNode* sinbadNode = mSM->getRootSceneNode()->createChildSceneNode();
-   /* Entity* sinbad = mSM->createEntity("Sinbad.mesh");    
-    sinbadNode->attachObject(sinbad);*/
     Simbad* sinbad = new Simbad(sinbadNode);
     sceneObjects.push_back(sinbad);
 

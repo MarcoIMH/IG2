@@ -3,6 +3,7 @@
 #include <OgreSceneManager.h>
 #include <OgreEntity.h>
 #include <OgreInput.h>
+#include <OgreFrameListener.h>
 #include <SDL_keycode.h>
 #include <vector>
 
