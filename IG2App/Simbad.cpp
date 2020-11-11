@@ -1,6 +1,4 @@
 #include "Simbad.h"
-#include <iostream>
-
 
 Simbad::Simbad(Ogre::SceneNode* mNode) :EntidadIG(mNode), swordLeftHand(false)
 {
@@ -27,7 +25,7 @@ Simbad::Simbad(Ogre::SceneNode* mNode) :EntidadIG(mNode), swordLeftHand(false)
 
 Simbad::~Simbad()
 {
-
+	
 }
 
 bool Simbad::keyPressed(const OgreBites::KeyboardEvent& evt)

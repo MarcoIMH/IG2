@@ -370,7 +370,7 @@ void IG2App::scene5()
 
 void IG2App::scene6()
 {
-    mSM->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
+    //mSM->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
 
     //AGUA
     SceneNode* planoAguaNode = mSM->getRootSceneNode()->createChildSceneNode("PlanoAguaNode");
@@ -418,9 +418,10 @@ void IG2App::scene6()
     avionNode->setScale(0.1f, 0.1f, 0.1f);
     avionNode->translate(0, 400, 0);
 
+    //BOYA
     SceneNode* boyaNode = mSM->getRootSceneNode()->createChildSceneNode();
     Boya* boya = new Boya(boyaNode);
-    boyaNode->scale(Vector3(5, 5, 5));
+    //boyaNode->scale(Vector3(20, 7, 20));
     sceneObjects.push_back(boya);
 
     //HAPPY FACE
