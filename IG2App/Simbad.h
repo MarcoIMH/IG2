@@ -11,9 +11,13 @@ private:
 	Entity* sinbad;
 	Entity* sword;
 	bool swordLeftHand;
+	bool isScene7;
 
 	Ogre::AnimationState* as_Dance;
 	Ogre::AnimationState* as_RunBase;
 	Ogre::AnimationState* as_RunTop;
+
+	Ogre::Animation* animacionRuta;
+	Ogre::AnimationState* as_RunPlaneCenter;
 };
 

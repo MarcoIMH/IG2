@@ -1,7 +1,5 @@
 #pragma once
 #include "EntidadIG.h"
-#include <OgreAnimation.h>
-#include <OgreKeyFrame.h>
 
 class Boya : public EntidadIG
 {

@@ -13,20 +13,19 @@ Boya::Boya(SceneNode* mNode) : EntidadIG(mNode)
 	animacionBoya = mSM->createAnimation("AnimVV", duracion);
 	NodeAnimationTrack* track = animacionBoya->createNodeTrack(0);
 	track->setAssociatedNode(mNode);
-	Vector3 keyFramePos(-10, 0, 100);
+	Vector3 keyFramePosInicial(-10, 0, 100);
 	Real durPaso = duracion / 4.0;
 
-	Quaternion quat;
 	Vector3 src = Vector3(0, 0, 1);
 
 	TransformKeyFrame* kf = track->createNodeKeyFrame(durPaso * 0);	//origen
 
 	kf = track->createNodeKeyFrame(durPaso * 1);			//Arriba
-	kf->setTranslate(keyFramePos + Vector3(0, 20, 0));
+	kf->setTranslate(keyFramePosInicial + Vector3(0, 20, 0));
 	kf->setRotation(src.getRotationTo(Vector3(1, 0, 1)));
 
 	kf = track->createNodeKeyFrame(durPaso * 3);			//Abajo
-	kf->setTranslate(keyFramePos + Vector3(0, -20, 0));
+	kf->setTranslate(keyFramePosInicial + Vector3(0, -20, 0));
 	kf->setRotation(src.getRotationTo(Vector3(-1, 0, 1)));
 
 	kf = track->createNodeKeyFrame(durPaso * 4);			//Origen

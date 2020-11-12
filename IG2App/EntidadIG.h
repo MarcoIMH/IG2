@@ -6,6 +6,8 @@
 #include <OgreFrameListener.h>
 #include <SDL_keycode.h>
 #include <vector>
+#include <OgreAnimation.h>
+#include <OgreKeyFrame.h>
 
 using namespace Ogre;
 

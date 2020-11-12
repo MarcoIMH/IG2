@@ -146,7 +146,7 @@ void IG2App::setupScene(void)
 
   // finally something to render
 
-  setScene(6);
+  setScene(7);
   switch (sceneId) {
   case 0: scene0(); break;
   case 1: scene1(); break;
@@ -154,7 +154,8 @@ void IG2App::setupScene(void)
   case 3: scene3(); break;  // Sistema solar
   case 4: scene4(); break;  // Avión
   case 5: scene5(); break;  // Plano Antes de Entidad IG
-  case 6: scene6(); break;  // Plano y molino después de Entidad IG
+  case 6: scene6(); break;  // Plano y molino después de Entidad IG + Plano sinbad  + Animaciones Sinbad  + Cilindro central animado
+  case 7: scene7(); break;  // Ejercicio 38 Práctica 1.5, Sinbad corre desde su plano al centro, se mote la animación del cilindro central y su aparición
   }
 
   //------------------------------------------------------------------------
@@ -370,7 +371,7 @@ void IG2App::scene5()
 
 void IG2App::scene6()
 {
-    //mSM->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
+    mSM->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
 
     //AGUA
     SceneNode* planoAguaNode = mSM->getRootSceneNode()->createChildSceneNode("PlanoAguaNode");
@@ -423,6 +424,66 @@ void IG2App::scene6()
     Boya* boya = new Boya(boyaNode);
     //boyaNode->scale(Vector3(20, 7, 20));
     sceneObjects.push_back(boya);
+
+    //HAPPY FACE
+    SceneNode* faceNode = mSM->getRootSceneNode()->createChildSceneNode();
+    Entity* ent = mSM->createEntity("sphere.mesh");
+    ent->setMaterialName("Practica1/HappyFace");
+    faceNode->attachObject(ent);
+    faceNode->setScale(0.2f, 0.2f, 0.2f);
+    faceNode->translate(500, 20, -240);
+}
+
+void IG2App::scene7()
+{
+    mSM->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
+
+    //AGUA
+    SceneNode* planoAguaNode = mSM->getRootSceneNode()->createChildSceneNode("PlanoAguaNode");
+    water = new Plano(planoAguaNode, "PlanoAgua");
+    water->setTexture("Practica1/Water");
+    sceneObjects.push_back(water);
+
+    //MOLINO Y SU PLANO
+    SceneNode* molinoNode = mSM->getRootSceneNode()->createChildSceneNode();
+    Molino* molino = new Molino(molinoNode);
+    sceneObjects.push_back(molino);
+    //Transformaciones molino
+    molinoNode->translate(450, 190, -240);
+
+    SceneNode* planoMolinoNode = mSM->getRootSceneNode()->createChildSceneNode();
+    Plano* pM = new Plano(planoMolinoNode, "PlanoMolino");
+    pM->setTexture("Practica1/Orange");
+    sceneObjects.push_back(pM);
+    //Transformaciones plano molino
+    planoMolinoNode->scale(0.2f, 1.0f, 0.3f);
+    planoMolinoNode->translate(430, 1, -280);
+
+    //SINBAD Y SU PLANO
+    SceneNode* sinbadNode = mSM->getRootSceneNode()->createChildSceneNode();
+    Simbad* sinbad = new Simbad(sinbadNode);
+    sceneObjects.push_back(sinbad);
+
+    //Transformaciones sinbad
+    sinbadNode->setScale(8, 8, 8);
+    sinbadNode->translate(-300, 40, 200);
+    sinbadNode->setInitialState();
+
+    SceneNode* planoSinbadNode = mSM->getRootSceneNode()->createChildSceneNode();
+    Plano* pS = new Plano(planoSinbadNode, "PlanoSinbad");
+    pS->setTexture("Practica1/Red");
+    sceneObjects.push_back(pS);
+    //Transformaciones plano sinbad
+    planoSinbadNode->translate(-300, 1, 200);
+    planoSinbadNode->setScale(0.3f, 1.0f, 0.4f);
+
+    //AVION
+    SceneNode* avionNode = mSM->getRootSceneNode()->createChildSceneNode();
+    Avion* avion = new Avion(avionNode);
+    sceneObjects.push_back(avion);
+    //Transformaciones AVion
+    avionNode->setScale(0.1f, 0.1f, 0.1f);
+    avionNode->translate(0, 400, 0);
 
     //HAPPY FACE
     SceneNode* faceNode = mSM->getRootSceneNode()->createChildSceneNode();
