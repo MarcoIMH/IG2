@@ -154,8 +154,8 @@ void IG2App::setupScene(void)
   case 3: scene3(); break;  // Sistema solar
   case 4: scene4(); break;  // Avión
   case 5: scene5(); break;  // Plano Antes de Entidad IG
-  case 6: scene6(); break;  // Plano y molino después de Entidad IG + Plano sinbad  + Animaciones Sinbad  + Cilindro central animado
-  case 7: scene7(); break;  // Ejercicio 38 Práctica 1.5, Sinbad corre desde su plano al centro, se mote la animación del cilindro central y su aparición
+  case 6: scene6(); break;  // Plano y molino después de Entidad IG + Plano sinbad + Texturas  + Animaciones Sinbad Bailar/Correr/Espada + Cilindro central animado
+  case 7: scene7(); break;  // Sinbad corre desde su plano al centro, se emite la animación del cilindro central y su aparición
   }
 
   //------------------------------------------------------------------------
