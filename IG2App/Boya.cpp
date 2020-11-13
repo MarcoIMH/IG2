@@ -6,14 +6,11 @@ Boya::Boya(SceneNode* mNode) : EntidadIG(mNode)
 	mNode->attachObject(boyaEntity);
 	boyaEntity->setMaterialName("Practica1/Checker");
 
-	mNode->setScale(Vector3(10, 7, 10));
-	mNode->setInitialState();
-
 	Ogre::Real duracion = 16;
 	animacionBoya = mSM->createAnimation("AnimVV", duracion);
 	NodeAnimationTrack* track = animacionBoya->createNodeTrack(0);
 	track->setAssociatedNode(mNode);
-	Vector3 keyFramePosInicial(-10, 0, 100);
+	Vector3 keyFramePosInicial = mNode->getPosition();
 	Real durPaso = duracion / 4.0;
 
 	Vector3 src = Vector3(0, 0, 1);

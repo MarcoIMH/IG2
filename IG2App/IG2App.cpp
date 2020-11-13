@@ -146,7 +146,7 @@ void IG2App::setupScene(void)
 
   // finally something to render
 
-  setScene(7);
+  setScene(6);
   switch (sceneId) {
   case 0: scene0(); break;
   case 1: scene1(); break;
@@ -422,7 +422,8 @@ void IG2App::scene6()
     //BOYA
     SceneNode* boyaNode = mSM->getRootSceneNode()->createChildSceneNode();
     Boya* boya = new Boya(boyaNode);
-    //boyaNode->scale(Vector3(20, 7, 20));
+    boyaNode->scale(Vector3(20, 7, 20));
+    boyaNode->setInitialState();
     sceneObjects.push_back(boya);
 
     //HAPPY FACE

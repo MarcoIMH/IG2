@@ -1,6 +1,6 @@
 #include "Simbad.h"
 
-Simbad::Simbad(Ogre::SceneNode* mNode) :EntidadIG(mNode), swordLeftHand(false), isScene7(true)
+Simbad::Simbad(Ogre::SceneNode* mNode) :EntidadIG(mNode), swordLeftHand(false), isScene7(false)
 {
 	sinbad = mSM->createEntity("Sinbad.mesh");
 	mNode->attachObject(sinbad);
