@@ -146,7 +146,7 @@ void IG2App::setupScene(void)
 
   // finally something to render
 
-  setScene(6);
+  setScene(7);
   switch (sceneId) {
   case 0: scene0(); break;
   case 1: scene1(); break;
