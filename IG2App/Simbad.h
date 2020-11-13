@@ -11,7 +11,6 @@ private:
 	Entity* sinbad;
 	Entity* sword;
 	bool swordLeftHand;
-	bool isScene7;
 
 	Ogre::AnimationState* as_Dance;
 	Ogre::AnimationState* as_RunBase;
