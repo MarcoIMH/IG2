@@ -110,3 +110,16 @@ material Practica1/WaterWithStones{
 		}
 	}
 }
+
+
+material Practica2/ColaAvion{
+	technique{
+		pass{
+			lighting off
+			texture_unit{
+				texture 10points.png
+				tex_address_mode clamp
+			}
+		}
+	}
+}

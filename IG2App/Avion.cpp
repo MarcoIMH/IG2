@@ -1,4 +1,5 @@
 #include "Avion.h"
+#include <OgreBillboardSet.h>
 
 Avion::Avion(SceneNode* mNode): EntidadIG(mNode)
 {
@@ -65,6 +66,16 @@ Avion::Avion(SceneNode* mNode): EntidadIG(mNode)
 	focoAvion->translate(0, -10, 0, Ogre::Node::TS_LOCAL);
 
 	appListeners.push_back(this);
+
+	//BILLBOARDSET
+	Ogre:: BillboardSet* avionBBSet = mSM->createBillboardSet("avionBB", 1);
+	avionBBSet->setDefaultDimensions(150, 150);
+	avionBBSet->setMaterialName("Practica2/ColaAvion");
+
+	Ogre::SceneNode* colaAvion = mNode->createChildSceneNode();
+	colaAvion->attachObject(avionBBSet);
+
+	Billboard* avionBB = avionBBSet->createBillboard(Vector3(0, 0, -300));
 }
 
 bool Avion::keyPressed(const OgreBites::KeyboardEvent& evt)
