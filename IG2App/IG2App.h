@@ -45,6 +45,7 @@ private:
     void scene7();
     std::vector<EntidadIG*> sceneObjects;
     Plano* water;
+    bool isWater = true;
 };
 
 #endif

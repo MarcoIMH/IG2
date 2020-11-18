@@ -30,12 +30,12 @@ Simbad::Simbad(Ogre::SceneNode* mNode) :EntidadIG(mNode), swordLeftHand(false)
 	//SINBAD SE MUEVE HACIA EL CENTRO DEL RIO - KEY FRAME 2
 	kf = track->createNodeKeyFrame((Real) 4.5);
 	kf->setRotation(src.getRotationTo(Vector3(1, 0, -1)));
-	kf->setTranslate(keyFramePosInicial + Vector3(350, 0, -250));
+	kf->setTranslate(keyFramePosInicial + Vector3(280, 0, -210));
 
 	//SINBAD ROTA HACIA EL CENTRO DEL PLANO - KEY FRAME 3
 	kf = track->createNodeKeyFrame((Real) 6.5);
 	kf->setRotation(src.getRotationTo(Vector3(-1, 0, 1)));
-	kf->setTranslate(keyFramePosInicial + Vector3(350, 0, -250));
+	kf->setTranslate(keyFramePosInicial + Vector3(280, 0, -210));
 
 	//SINBAD SE DESPLAZA AL CENTRO DEL PLANO - KEY FRAME4
 	kf = track->createNodeKeyFrame((Real)9.5);
