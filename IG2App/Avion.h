@@ -28,8 +28,10 @@ private:
 
 	Light* luz;
 
-	ParticleSystem* pSysAvion;
-	SceneNode* psysNode;
+	ParticleSystem* pSysExplosionAvion;
+	SceneNode* pSysExplosionNode;
+
+	ParticleSystem* pSysColaAvion;
 
 	int radioGiro;
 	bool r_event = false;

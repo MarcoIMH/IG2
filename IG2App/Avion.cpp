@@ -77,12 +77,19 @@ Avion::Avion(SceneNode* mNode): EntidadIG(mNode)
 
 	Billboard* avionBB = avionBBSet->createBillboard(Vector3(0, 0, -300));
 
-	//PARTICLESYSTEM
-	pSysAvion = mSM->createParticleSystem("avionExplosion", "IG2App/Explosion");
+	//EXPLOSION PARTICLESYSTEM
+	pSysExplosionAvion = mSM->createParticleSystem("avionExplosion", "IG2App/Explosion");
 
-	psysNode = mSM->getRootSceneNode()->createChildSceneNode();
-	psysNode->attachObject(pSysAvion); 
-	pSysAvion->setEmitting(false);
+	pSysExplosionNode = mSM->getRootSceneNode()->createChildSceneNode();
+	pSysExplosionNode->attachObject(pSysExplosionAvion); 
+	pSysExplosionAvion->setEmitting(false);
+
+	//COLA PARTICLESYSTEM
+	pSysColaAvion = mSM->createParticleSystem("avionCola", "IG2App/SmokeTrail");
+
+	SceneNode* psysColaNode = mNode->createChildSceneNode();
+	psysColaNode->attachObject(pSysColaAvion);
+	pSysColaAvion->setEmitting(true);
 }
 
 bool Avion::keyPressed(const OgreBites::KeyboardEvent& evt)
@@ -110,12 +117,12 @@ void Avion::frameRendered(const Ogre::FrameEvent& evt)
 		mNode->translate(Vector3(-radioGiro, 0, 0), Ogre::Node::TS_LOCAL);	
 
 		mNode->setVisible(true);
-		pSysAvion->setEmitting(false);
+		pSysExplosionAvion->setEmitting(false);
 	}
 	else {
-		psysNode->setPosition(mNode->getPosition());
+		pSysExplosionNode->setPosition(mNode->getPosition());
 		mNode->setVisible(false);
-		pSysAvion->setEmitting(true);
+		pSysExplosionAvion->setEmitting(true);
 	}
 
 	aspaD->giroAspasMolino(-3);
