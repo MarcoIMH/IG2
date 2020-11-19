@@ -1,5 +1,6 @@
 #pragma once
 #include "AspasMolino.h"
+#include <OgreParticleSystem.h>
 
 using namespace Ogre;
 
@@ -26,6 +27,9 @@ private:
 	AspasMolino* aspaD;
 
 	Light* luz;
+
+	ParticleSystem* pSysAvion;
+	SceneNode* psysNode;
 
 	int radioGiro;
 	bool r_event = false;

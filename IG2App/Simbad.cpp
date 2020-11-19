@@ -1,6 +1,6 @@
 #include "Simbad.h"
 
-Simbad::Simbad(Ogre::SceneNode* mNode) :EntidadIG(mNode), swordLeftHand(false)
+Simbad::Simbad(Ogre::SceneNode* mNode) :EntidadIG(mNode), swordLeftHand(false), isExplosionTime(false)
 {
 	sinbad = mSM->createEntity("Sinbad.mesh");
 	mNode->attachObject(sinbad);
@@ -11,6 +11,7 @@ Simbad::Simbad(Ogre::SceneNode* mNode) :EntidadIG(mNode), swordLeftHand(false)
 	as_Dance = sinbad->getAnimationState("Dance");
 	as_RunBase = sinbad->getAnimationState("RunBase");
 	as_RunTop = sinbad->getAnimationState("RunTop");
+	as_IdleTop = sinbad->getAnimationState("IdleTop");
 		
 	Ogre::Real duracion = 10;
 	Vector3 keyFramePosInicial(mNode->getPosition());
@@ -48,6 +49,9 @@ Simbad::Simbad(Ogre::SceneNode* mNode) :EntidadIG(mNode), swordLeftHand(false)
 
 	//Desactivamos la animación de bailar
 	as_Dance->setEnabled(false);
+
+	//Desactivamos la animación idle
+	as_IdleTop->setEnabled(false);
 
 	//Activamos la animación de correr
 	as_RunBase->setEnabled(true);
@@ -106,15 +110,51 @@ bool Simbad::keyPressed(const OgreBites::KeyboardEvent& evt)
 		}
 		swordLeftHand = !swordLeftHand;
 	}
+	else if (evt.keysym.sym == SDLK_r) {
+		isExplosionTime = !isExplosionTime;
+
+		if (isExplosionTime) {
+			as_Dance->setEnabled(false);
+			as_Dance->setTimePosition(0);
+
+			as_RunBase->setEnabled(false);
+			as_RunTop->setEnabled(false);
+			as_RunBase->setTimePosition(0);
+			as_RunTop->setTimePosition(0);
+
+			as_RunPlaneCenter->setEnabled(false);
+
+			as_IdleTop->setEnabled(true);
+
+			mNode->translate(0, -35, 0);
+			mNode->pitch(Ogre::Degree(-90));
+		}
+		else {
+			as_IdleTop->setEnabled(false);
+			as_IdleTop->setTimePosition(0);
+
+			as_RunBase->setEnabled(true);
+			as_RunTop->setEnabled(true);
+			as_RunPlaneCenter->setEnabled(true);
+
+			mNode->translate(0, 35, 0);
+			mNode->pitch(Ogre::Degree(90));
+		}		
+	}
 	return false;
 }
 
 void Simbad::frameRendered(const Ogre::FrameEvent& evt)
 {
-	if (as_Dance->getEnabled()) as_Dance->addTime(evt.timeSinceLastFrame);
-	else {
-		as_RunBase->addTime(evt.timeSinceLastFrame);
-		as_RunTop->addTime(evt.timeSinceLastFrame);
-		as_RunPlaneCenter->addTime(evt.timeSinceLastFrame);
+	if (isExplosionTime) {
+		if (as_IdleTop->getEnabled()) as_IdleTop->addTime(evt.timeSinceLastFrame);
 	}
+	else {
+		if (as_Dance->getEnabled()) as_Dance->addTime(evt.timeSinceLastFrame);
+		else {
+			as_RunBase->addTime(evt.timeSinceLastFrame);
+			as_RunTop->addTime(evt.timeSinceLastFrame);
+			as_RunPlaneCenter->addTime(evt.timeSinceLastFrame);
+		}
+	}	
 }

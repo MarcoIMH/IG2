@@ -1,6 +1,3 @@
-// Explosion Particle System
-
-// smoke
 particle_system IG2App/Explosion
 {
 	material        	IG2App/Smoke
@@ -14,16 +11,17 @@ particle_system IG2App/Explosion
 	// Area emitter
 	emitter Point
 	{
+		colour 0.4 0.4 0.4 0.4
 		position 0 15 -15
-		angle 35
-		emission_rate 15
+		angle 180
+		emission_rate 30
 		time_to_live 4
 		direction 0 1 0
 		velocity_min 50
 		velocity_max 80    	
 	}
 
-	affector ColourImage
+	affector ColourFader
 	{
 		image smokecolors.png
 	}

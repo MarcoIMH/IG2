@@ -76,6 +76,13 @@ Avion::Avion(SceneNode* mNode): EntidadIG(mNode)
 	colaAvion->attachObject(avionBBSet);
 
 	Billboard* avionBB = avionBBSet->createBillboard(Vector3(0, 0, -300));
+
+	//PARTICLESYSTEM
+	pSysAvion = mSM->createParticleSystem("avionExplosion", "IG2App/Explosion");
+
+	psysNode = mSM->getRootSceneNode()->createChildSceneNode();
+	psysNode->attachObject(pSysAvion); 
+	pSysAvion->setEmitting(false);
 }
 
 bool Avion::keyPressed(const OgreBites::KeyboardEvent& evt)
@@ -100,8 +107,16 @@ void Avion::frameRendered(const Ogre::FrameEvent& evt)
 		mNode->setPosition(0, 0, 0);
 		mNode->yaw(Ogre::Degree(1), Ogre::Node::TS_WORLD);
 		mNode->setPosition(centro);
-		mNode->translate(Vector3(-radioGiro, 0, 0), Ogre::Node::TS_LOCAL);		
-	}	
+		mNode->translate(Vector3(-radioGiro, 0, 0), Ogre::Node::TS_LOCAL);	
+
+		mNode->setVisible(true);
+		pSysAvion->setEmitting(false);
+	}
+	else {
+		psysNode->setPosition(mNode->getPosition());
+		mNode->setVisible(false);
+		pSysAvion->setEmitting(true);
+	}
 
 	aspaD->giroAspasMolino(-3);
 	aspaI->giroAspasMolino(-3);
