@@ -131,6 +131,7 @@ void IG2App::scene1()
 {
     //SKYPLANE
     mSM->setSkyPlane(true, Plane(Vector3::UNIT_Z, -50), "IG2App/space", 1, 1, true, 1.0, 10, 10);
+    //mSM->setSkyPlane(true, Plane(Vector3::UNIT_Z, -200), "IG2App/space", 1, 1, true, 0.0, 10, 10);
 
     //AGUA
     SceneNode* planoAguaNode = mSM->getRootSceneNode()->createChildSceneNode("PlanoAguaNode");
