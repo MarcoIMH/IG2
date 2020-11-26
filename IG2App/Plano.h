@@ -5,6 +5,7 @@ public:
 	Plano(Ogre::SceneNode* mNode, std::string nombre, float w = 1080.0f, float h = 800.0f);
 	~Plano() {};
 	void setTexture(std::string texture);
+	Entity* getEntity() const { return ent; };
 private:
 	Entity* ent;
 };

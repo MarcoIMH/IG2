@@ -7,6 +7,7 @@
 #include <iostream>
 #include "Simbad.h"
 #include "Boya.h"
+#include "Rio.h"
 
 using namespace Ogre;
 
@@ -15,18 +16,7 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
   if (evt.keysym.sym == SDLK_ESCAPE)
   {
     getRoot()->queueEndRendering();
-  }
-  else if (evt.keysym.sym == SDLK_r) {
-      if (sceneId == 1 && isWater) {
-          water->setTexture("Practica1/WaterWithStones");
-          isWater = false;
-      }
-      else if (sceneId == 1 && !isWater) {
-          water->setTexture("Practica1/Water");
-          isWater = true;
-      }
-  }
-  
+  }  
   return true;
 }
 
@@ -135,9 +125,8 @@ void IG2App::scene1()
 
     //AGUA
     SceneNode* planoAguaNode = mSM->getRootSceneNode()->createChildSceneNode("PlanoAguaNode");
-    water = new Plano(planoAguaNode, "PlanoAgua");
-    water->setTexture("Practica1/Water");
-    sceneObjects.push_back(water);
+    Rio* water = new Rio(planoAguaNode);
+    sceneObjects.push_back(water);   
 
     //MOLINO Y SU PLANO
     SceneNode* molinoNode = mSM->getRootSceneNode()->createChildSceneNode();

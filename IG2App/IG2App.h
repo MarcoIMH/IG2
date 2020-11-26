@@ -36,8 +36,7 @@ protected:
 private:
     int sceneId = 0;
     void scene1();
-    std::vector<EntidadIG*> sceneObjects;
-    Plano* water;
+    std::vector<EntidadIG*> sceneObjects;    
     bool isWater = true;
 };
 

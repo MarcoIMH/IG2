@@ -40,3 +40,24 @@ material IG2App/space
 		}
 	}
 }
+
+material IG2/reflejo{
+	technique{
+		pass{
+			ambient 0.5 0.5 0.5
+			diffuse 1.0 1.0 1.0
+			
+			texture_unit
+			{
+				texture waterstones.jpg
+				color_op modulate
+			}
+			texture_unit
+			{			
+				texture water.jpg
+				color_op add
+				scroll_anim -0.1 0.0
+			}
+		}
+	}
+}
