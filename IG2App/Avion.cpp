@@ -52,19 +52,6 @@ Avion::Avion(SceneNode* mNode): EntidadIG(mNode)
 	heliceINode->translate(Vector3(-350, 0, 70));
 	heliceINode->scale(Vector3(0.5f, 0.5f, 0.5f));
 
-	//LUZ AVIÓN
-	luz = mSM->createLight();
-	luz->setType(Ogre::Light::LT_SPOTLIGHT);
-	luz->setDiffuseColour(0.75, 0.75, 0.75);
-
-	SceneNode* focoAvion = mNode->createChildSceneNode();
-	//mLightNode = mCamNode->createChildSceneNode("nLuz");
-	focoAvion->attachObject(luz);
-
-	focoAvion->yaw(Ogre::Degree(-90));
-	focoAvion->setDirection(Ogre::Vector3(1, -1, 0));  //vec3.normalise();
-	focoAvion->translate(0, -10, 0, Ogre::Node::TS_LOCAL);
-
 	appListeners.push_back(this);
 
 	//BILLBOARDSET
@@ -99,7 +86,6 @@ bool Avion::keyPressed(const OgreBites::KeyboardEvent& evt)
 		aspaI->giroAspasMolino(-3);
 	}
 	else if (evt.keysym.sym == SDLK_r) {
-		luz->setVisible(r_event);
 		r_event = !r_event;
 	}
 	return false;

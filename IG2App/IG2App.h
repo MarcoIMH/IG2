@@ -35,14 +35,7 @@ protected:
 
 private:
     int sceneId = 0;
-    void scene0();
     void scene1();
-    void scene2();
-    void scene3();
-    void scene4();
-    void scene5();
-    void scene6();
-    void scene7();
     std::vector<EntidadIG*> sceneObjects;
     Plano* water;
     bool isWater = true;

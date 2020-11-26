@@ -26,8 +26,6 @@ private:
 	AspasMolino* aspaI;
 	AspasMolino* aspaD;
 
-	Light* luz;
-
 	ParticleSystem* pSysExplosionAvion;
 	SceneNode* pSysExplosionNode;
 

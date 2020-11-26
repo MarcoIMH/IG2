@@ -17,3 +17,26 @@ material IG2App/Smoke
 		}
 	}
 }
+
+material IG2App/space
+{
+	technique
+	{
+		pass
+		{		
+			diffuse 1.0 1.0 1.0
+
+			texture_unit
+			{
+				texture lightMap.jpg
+				color_op modulate
+			}
+			texture_unit
+			{
+				texture spaceSky.jpg
+				rotate_anim 0.01
+				color_op modulate
+			}
+		}
+	}
+}
