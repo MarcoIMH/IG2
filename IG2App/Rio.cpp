@@ -74,8 +74,8 @@ void Rio::setReflejo()
         "rttReflejo",
         ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
         TEX_TYPE_2D, 
-        (Real)mSM->getCurrentViewport()->getActualWidth(), // widht ejemplo
-        (Real)mSM->getCurrentViewport()->getActualHeight(), // height ejemplo
+        (Real)mSM->getCamera("Cam")->getViewport()->getActualWidth(), // widht ejemplo
+        (Real)mSM->getCamera("Cam")->getViewport()->getActualHeight(), // height ejemplo
         0, PF_R8G8B8, TU_RENDERTARGET);
 
     RenderTexture* renderTexture = rttRef->getBuffer()->getRenderTarget();
@@ -88,6 +88,6 @@ void Rio::setReflejo()
         getTechnique(0)->getPass(0)->
         createTextureUnitState("rttReflejo"); 
 
-    tu->setColourOperation(LBO_MODULATE);
+    tu->setColourOperation(LBO_ADD);
     tu->setProjectiveTexturing(true, _camRef);
 }
