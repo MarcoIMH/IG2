@@ -10,7 +10,7 @@ out vec2 vUv0; // out del vertex shader
 
 void main() {
 	vUv0 = uv0; // se pasan las coordenadas de textura
-	vUv1 = (uv0 - 0.5) * ZF + 0.5; 
+	vUv1 = (uv0 - 0.5) * ((sinTiempo * 0.5 + 0.5) * 0.5) + 0.5;
 	gl_Position = modelViewProjMat * vertex; //obligatorio
 	// (Clipping coordinates)
 }

@@ -95,7 +95,7 @@ material IG2/spaceGLSL{
 			}
 
 			texture_unit {
-				texture numbers.jpg
+				texture spaceSky.jpg
 				tex_adress_mode wrap
 			}
 		}
