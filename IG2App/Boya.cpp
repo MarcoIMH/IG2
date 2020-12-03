@@ -2,9 +2,10 @@
 
 Boya::Boya(SceneNode* mNode) : EntidadIG(mNode)
 {
-	boyaEntity = mSM->createEntity("Barrel.mesh");
+	//boyaEntity = mSM->createEntity("Barrel.mesh");
+	boyaEntity = mSM->createEntity("uv_sphere.mesh");
 	mNode->attachObject(boyaEntity);
-	boyaEntity->setMaterialName("Practica1/Checker");
+	boyaEntity->setMaterialName("IG2/boya");
 
 	Ogre::Real duracion = 16;
 	animacionBoya = mSM->createAnimation("AnimVV", duracion);
