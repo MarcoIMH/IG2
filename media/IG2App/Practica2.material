@@ -71,7 +71,7 @@ vertex_program SpaceVS glsl{
 	}
 }
 
-fragment_program SpaceFS glsl //nombre para el shader
+fragment_program SpaceFS glsl
 {
 	source SpaceFS.glsl
 	default_params 
@@ -103,33 +103,33 @@ material IG2/spaceGLSL{
 }
 
 vertex_program boyaVS glsl{
-	source SpaceVS.glsl
+	source boyaVS.glsl
 	default_params{
 		param_named_auto modelViewProjMat worldviewproj_matrix
-		param_named ZF float 0.5 
-		param_named_auto sinTiempo sintime_0_2pi 32
 	}
 }
 
-fragment_program boyaFS glsl //nombre para el shader
+fragment_program boyaFS glsl
 {
-	source SpaceFS.glsl
+	source boyaFS.glsl
 	default_params 
 	{
-		param_named texturaL int 0 
-		param_named texturaM int 1 
-		param_named BF float 0.5
+		param_named textura int 0 
+		param_named OutColor float4 0.3 0.8 0.4 1.0
+		param_named InColor float4 0.1 0.1 0.1 1.0
+		param_named_auto Flipping  render_target_flipping
 	}
 }
 
 material IG2/boya{
 	technique{
 		pass{
-			vertex_program_ref SpaceVS {}
-			fragment_program_ref SpaceFS {}
-
+			vertex_program_ref boyaVS {}
+			fragment_program_ref boyaFS {}
+			cull_hardware none
+			cull_software none
 			texture_unit{
-				texture lightMap.jpg 2d
+				texture corrosion.jpg 2d 
 			}
 		}
 	}

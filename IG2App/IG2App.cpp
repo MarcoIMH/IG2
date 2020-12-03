@@ -164,7 +164,7 @@ void IG2App::scene1()
     //BOYA
     SceneNode* boyaNode = mSM->getRootSceneNode()->createChildSceneNode();
     Boya* boya = new Boya(boyaNode);
-    boyaNode->scale(Vector3(20, 7, 20));
+    boyaNode->scale(Vector3(0.5, 0.5, 0.5));
     boyaNode->setInitialState();
     sceneObjects.push_back(boya);
 
