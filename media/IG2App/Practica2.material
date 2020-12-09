@@ -29,13 +29,13 @@ material IG2App/space
 			texture_unit
 			{
 				texture lightMap.jpg
-				color_op modulate
+				colour_op modulate
 			}
 			texture_unit
 			{
 				texture spaceSky.jpg
 				rotate_anim 0.01
-				color_op modulate
+				colour_op modulate
 			}
 		} 
 	}
@@ -50,12 +50,12 @@ material IG2/reflejo{
 			texture_unit
 			{
 				texture waterstones.jpg
-				color_op modulate
+				colour_op modulate
 			}
 			texture_unit
 			{			
 				texture water.jpg
-				color_op add
+				colour_op add
 				scroll_anim -0.1 0.0
 			}
 		}
@@ -90,13 +90,13 @@ material IG2/spaceGLSL{
 
 			texture_unit{
 				texture lightMap.jpg 2d
-				tex_adress_mode clamp
+				tex_address_mode clamp
 				filtering bilinear
 			}
 
 			texture_unit {
 				texture spaceSky.jpg
-				tex_adress_mode wrap
+				tex_address_mode wrap
 			}
 		}
 	}
@@ -118,11 +118,14 @@ fragment_program boyaFS glsl
 	default_params 
 	{
 		param_named textura int 0 
-		param_named OutColor float4 0.3 0.8 0.4 1.0
-		param_named InColor float4 0.1 0.1 0.1 1.0
-		//param_named lightDiffuse float3 1.0 1.0 0.0 
-		param_named_auto Flipping  render_target_flipping
-		//param_named_auto lightAmbient surface_diffuse_color
+		param_named texturaCorrosion int 1
+		param_named InColor float3 1.0 1.0 0.0
+		param_named OutColor float3 0.3 0.8 0.4
+		param_named_auto Flipping render_target_flipping
+		param_named_auto lightAmbient ambient_light_colour 0
+		param_named_auto lightDiffuse light_diffuse_colour 0
+		param_named_auto lightPosition light_position_view_space 0
+		param_named materialDiffuse float3 1.0 1.0 1.0
 	}
 }
 
@@ -133,6 +136,12 @@ material IG2/boya{
 			fragment_program_ref boyaFS {}
 			cull_hardware none
 			cull_software none
+			diffuse 1.0 1.0 1.0
+
+			texture_unit{
+				texture BumpyMetal.jpg 2d
+			}
+
 			texture_unit{
 				texture corrosion.jpg 2d
 			}
