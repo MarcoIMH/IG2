@@ -55,7 +55,7 @@ material IG2/reflejo{
 			texture_unit
 			{			
 				texture water.jpg
-				colour_op add
+				colour_op modulate
 				scroll_anim -0.1 0.0
 			}
 		}
