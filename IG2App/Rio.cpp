@@ -25,7 +25,6 @@
 #include <OgreInput.h>
 #include <OGRE\OgreSceneNode.h>
 
-
 Rio::Rio(SceneNode* mNode) : EntidadIG(mNode), _isWater(true) {
 	_rio = new Plano(mNode, "PlanoAgua");
 	_rio->setTexture("IG2/reflejo");
@@ -54,6 +53,16 @@ bool Rio::keyPressed(const OgreBites::KeyboardEvent& evt)
     return false;
 }
 
+void Rio::preRenderTargetUpdate(const Ogre::RenderTargetEvent& evt)
+{
+    sendEvent(FlipMessage());
+}
+
+void Rio::postRenderTargetUpdate(const Ogre::RenderTargetEvent& evt)
+{
+    sendEvent(UnFlipMessage());
+}
+
 void Rio::setReflejo()
 {
     _mpRef = new MovablePlane(Vector3::UNIT_Y, 0);
@@ -79,6 +88,7 @@ void Rio::setReflejo()
         0, PF_R8G8B8, TU_RENDERTARGET);
 
     RenderTexture* renderTexture = rttRef->getBuffer()->getRenderTarget();
+    renderTexture->addListener(this);
 
     Viewport* vpt = renderTexture->addViewport(_camRef); 
     vpt->setClearEveryFrame(true); 

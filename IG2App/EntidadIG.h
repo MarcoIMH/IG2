@@ -8,6 +8,7 @@
 #include <vector>
 #include <OgreAnimation.h>
 #include <OgreKeyFrame.h>
+#include "Messages.h"
 
 using namespace Ogre;
 
@@ -23,7 +24,9 @@ public:
 	virtual void frameRendered(const Ogre::FrameEvent& evt) {};
 
 	void sendEvent(EntidadIG* entidad);
+	void sendEvent(Messages mensaje);
 	virtual void receiveEvent(EntidadIG* entidad) {};
+	virtual void receiveEvent(Messages mensaje) {};
 
 	virtual bool keyPressed(const OgreBites::KeyboardEvent& evnt);
 

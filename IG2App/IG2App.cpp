@@ -8,6 +8,7 @@
 #include "Simbad.h"
 #include "Boya.h"
 #include "Rio.h"
+#include "HappyFace.h"
 
 using namespace Ogre;
 
@@ -170,10 +171,6 @@ void IG2App::scene1()
 
     ////HAPPY FACE
     SceneNode* faceNode = mSM->getRootSceneNode()->createChildSceneNode();
-    Entity* ent = mSM->createEntity("sphere.mesh");
-    ent->setMaterialName("Practica1/HappyFace");
-    faceNode->attachObject(ent);
-    faceNode->setScale(0.2f, 0.2f, 0.2f);
-    faceNode->translate(500, 20, -240);
+    HappyFace* happyFace = new HappyFace(faceNode);
 }   
 //------------------------------------------------------------------------

@@ -80,6 +80,17 @@ material Practica1/HappyFace{
 	}
 }
 
+material Practica1/HappyFace_flip{
+	technique{
+		pass{
+			texture_unit{
+				texture happyface_flip.png
+				env_map spherical
+			}
+		}
+	}
+}
+
 material Practica1/Checker{
 	technique{
 		pass{
