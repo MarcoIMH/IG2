@@ -26,7 +26,11 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
     }
     else if (evt.keysym.sym == SDLK_l) {
         isLuminance = !isLuminance;
-        CompositorManager::getSingleton().setCompositorEnabled(mSM->getCamera("Cam")->getViewport(), "IG2/Luminance", isLuminance);       
+        //CompositorManager::getSingleton().setCompositorEnabled(mSM->getCamera("Cam")->getViewport(), "Luminance", isLuminance);       
+    }
+    else if (evt.keysym.sym == SDLK_k) {
+        isEdgeEmboss = !isEdgeEmboss;
+        CompositorManager::getSingleton().setCompositorEnabled(mSM->getCamera("Cam")->getViewport(), "EdgeEmboss", isEdgeEmboss);
     }
   return true;
 }
@@ -90,7 +94,8 @@ void IG2App::setupScene(void)
   // and tell it to render into the main window
   Viewport* vp = getRenderWindow()->addViewport(cam);
   vp->setBackgroundColour(Ogre::ColourValue(0.0, 0.0, 0.0));    //Scene background color
-  CompositorManager::getSingleton().addCompositor(vp, "IG2/Luminance");
+  //CompositorManager::getSingleton().addCompositor(vp, "Luminance");
+  CompositorManager::getSingleton().addCompositor(vp, "EdgeEmboss");
 
   //------------------------------------------------------------------------
 

@@ -171,12 +171,38 @@ material IG2/LuminancePS
 		pass{
 			depth_check off
 			depth_write off
+
 			vertex_program_ref RenderQuadVS {}
 			fragment_program_ref LuminancePS {}
-			texture_unit RTT0 {
+
+			texture_unit {
 				filtering none
 			}
 		}
 	}
 }
 
+fragment_program Kernel3x3PS glsl
+{
+	source Kernel3x3PS.glsl
+	default_params{
+		param_named kernel float9 -4 -2 0 -2 1 2 0 2 4
+	}
+}
+
+material IG2/EdgeEmbossPS
+{
+	technique{
+		pass{
+			depth_check off
+			depth_write off
+
+			vertex_program_ref RenderQuadVS {}
+			fragment_program_ref Kernel3x3PS {}
+
+			texture_unit {
+				filtering none
+			}
+		}
+	}
+}

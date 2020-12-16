@@ -39,6 +39,7 @@ private:
     std::vector<EntidadIG*> sceneObjects;    
     bool isWater = true;
     bool isLuminance = false;
+    bool isEdgeEmboss = false;
 };
 
 #endif
