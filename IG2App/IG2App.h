@@ -38,6 +38,7 @@ private:
     void scene1();
     std::vector<EntidadIG*> sceneObjects;    
     bool isWater = true;
+    bool isLuminance = false;
 };
 
 #endif

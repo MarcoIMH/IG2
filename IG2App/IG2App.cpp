@@ -9,15 +9,25 @@
 #include "Boya.h"
 #include "Rio.h"
 #include "HappyFace.h"
+#include <OgreCompositor.h>
+#include <OgreCompositorChain.h>
+#include <OgreCompositionPass.h>
+#include <OgreCompositorInstance.h>
+#include <OgreCompositorManager.h>
+#include <OgreCompositorLogic.h>
 
 using namespace Ogre;
 
 bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt)
 {
-  if (evt.keysym.sym == SDLK_ESCAPE)
-  {
-    getRoot()->queueEndRendering();
-  }  
+    if (evt.keysym.sym == SDLK_ESCAPE)
+    {
+        getRoot()->queueEndRendering();
+    }
+    else if (evt.keysym.sym == SDLK_l) {
+        isLuminance = !isLuminance;
+        CompositorManager::getSingleton().setCompositorEnabled(mSM->getCamera("Cam")->getViewport(), "IG2/Luminance", isLuminance);       
+    }
   return true;
 }
 
@@ -80,6 +90,7 @@ void IG2App::setupScene(void)
   // and tell it to render into the main window
   Viewport* vp = getRenderWindow()->addViewport(cam);
   vp->setBackgroundColour(Ogre::ColourValue(0.0, 0.0, 0.0));    //Scene background color
+  CompositorManager::getSingleton().addCompositor(vp, "IG2/Luminance");
 
   //------------------------------------------------------------------------
 
