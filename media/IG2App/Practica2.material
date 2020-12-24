@@ -206,3 +206,52 @@ material IG2/EdgeEmbossPS
 		}
 	}
 }
+
+vertex_program ExplotaVS glsl{
+	source ExplotaVS.glsl
+	default_params{
+		
+	}
+}
+
+geometry_program ExplotaGS glsl{
+	source ExplotaGS.glsl
+	input_operation_type triangles
+	output_operation_type triangle_strip
+	max_output_vertices 3
+	default_params{
+		param_named_auto modelViewProjMat worldviewproj_matrix
+		param_named_auto tiempo time
+	}
+}
+
+fragment_program ExplotaFS glsl{
+	source ExplotaFS.glsl
+	default_params{
+		param_named bumpy int 0
+		param_named corrosion int 1
+		param_named_auto Flipping render_target_flipping
+	}
+}
+
+material IG2/ExplotaGS{
+	technique{
+		pass{
+			cull_hardware none
+			cull_software none
+
+			vertex_program_ref ExplotaVS {}
+			fragment_program_ref ExplotaFS {}
+			geometry_program_ref ExplotaGS {}
+
+			texture_unit {
+				texture BumpyMetal.jpg 2d
+			}
+
+			texture_unit {
+				texture corrosion.jpg 2d
+			}
+		}
+	}
+}
+

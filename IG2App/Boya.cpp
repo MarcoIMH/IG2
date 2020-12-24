@@ -34,10 +34,24 @@ Boya::Boya(SceneNode* mNode) : EntidadIG(mNode)
 	es_Vaiven->setEnabled(true);
 	es_Vaiven->setLoop(true);
 
+	explotaGS = false;
+
 	appListeners.push_back(this);
 }
 
 void Boya::frameRendered(const Ogre::FrameEvent& evt)
 {
 	if (es_Vaiven->getEnabled()) es_Vaiven->addTime(evt.timeSinceLastFrame);
+}
+
+bool Boya::keyPressed(const OgreBites::KeyboardEvent& evnt)
+{
+	if (evnt.keysym.sym == SDLK_r) {
+		if (!explotaGS)
+			boyaEntity->setMaterialName("IG2/ExplotaGS");
+		else
+			boyaEntity->setMaterialName("IG2/boya");
+		explotaGS = !explotaGS;
+	}
+	return false;
 }
