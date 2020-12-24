@@ -54,12 +54,12 @@ bool Molino::keyPressed(const OgreBites::KeyboardEvent& evt)
 		aspasNode->translate(esferaNode->convertLocalToWorldPosition(Vector3(0, 0, 0)), Node::TS_WORLD);
 	}
 	if (evt.keysym.sym == SDLK_r) {
-		if (!r_event) {
-			cupula->setMaterialName("Practica1/Red");		
+		if (r_event) {
+			cupula->setMaterialName("Practica1/Yellow");		
 			aspas->ocultaCilindros();
 		}
 		else {
-			cupula->setMaterialName("Practica1/Yellow");
+			cupula->setMaterialName("IG2/NormalesGS");
 			aspas->muestraCilindros();
 		}
 		r_event = !r_event;

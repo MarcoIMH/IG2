@@ -255,3 +255,30 @@ material IG2/ExplotaGS{
 	}
 }
 
+vertex_program NormalesVS glsl{
+	source NormalesVS.glsl
+}
+
+geometry_program NormalesGS glsl{
+	source NormalesGS.glsl
+	input_operation_type triangles
+	output_operation_type line_strip
+	max_output_vertices 6
+	default_params{
+		param_named_auto modelViewProjMat worldviewproj_matrix
+	}
+}
+
+fragment_program NormalesFS glsl{
+	source NormalesFS.glsl
+}
+
+material IG2/NormalesGS{
+	technique{
+		pass{
+			vertex_program_ref NormalesVS {}
+			fragment_program_ref NormalesFS {}
+			geometry_program_ref NormalesGS {}
+		}
+	}
+}
