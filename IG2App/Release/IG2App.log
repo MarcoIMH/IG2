@@ -1,6 +1,7 @@
-﻿  Molino.cpp
+﻿  Boya.cpp
 D:\GitHub\IG2\OGREsdk\include\OGRE\OgreHardwareBuffer.h(180,58): warning C4251: 'Ogre::HardwareBuffer::mShadowBuffer': class 'std::unique_ptr<Ogre::HardwareBuffer,std::default_delete<Ogre::HardwareBuffer>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Ogre::HardwareBuffer'
 D:\GitHub\IG2\OGREsdk\include\OGRE\OgreHardwareBuffer.h(180): message : vea la declaración de 'std::unique_ptr<Ogre::HardwareBuffer,std::default_delete<Ogre::HardwareBuffer>>'
+D:\GitHub\IG2\IG2App\Boya.cpp(15,15): warning C4244: 'inicializando': conversión de 'double' a 'Ogre::Real'; posible pérdida de datos
   Generando código
   1 of 765 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation

@@ -100,6 +100,7 @@ void IG2App::setupScene(void)
   //------------------------------------------------------------------------
 
   // without light we would just get a black screen   
+  mSM->setAmbientLight(Ogre::ColourValue(0.2, 0.2, 0.2));
 
   Light* luz = mSM->createLight("Luz");
   luz->setType(Ogre::Light::LT_DIRECTIONAL);
