@@ -9,10 +9,12 @@ uniform mat4 modelViewProjMat;
 uniform mat4 modelViewMat;
 uniform mat4 normalMat;
 uniform float tiempo;
+uniform float angulo;
 const float VD = 50;
 out vec2 vvvUv0;
 out vec3 normal;
 out vec4 gvertex;
+mat4 yaw;
 
 vec3 baricentro(vec3 vertex[3]){
 	return normalize(vec3((vertex[0] + vertex[1] + vertex[2]) / 3.0));
@@ -22,13 +24,22 @@ void main() {
 	vec3 vertices[3] = vec3[]( gl_in[0].gl_Position.xyz,
 							   gl_in[1].gl_Position.xyz,
 							   gl_in[2].gl_Position.xyz);
+
+    yaw[0] = vec4(cos(angulo), 0, -sin(angulo), 0);
+    yaw[1] = vec4(0,1,0, 0);
+    yaw[2] = vec4(sin(angulo), 0, cos(angulo), 0);
+    yaw[3] = vec4(0,0,0,1);
+
 	vec3 dir = baricentro(vertices);
 
+	
 	for(int i = 0; i < 3; ++i){
 		vec3 posDes = vertices[i] + dir * VD * tiempo;
+		vec4 vertexPosDes = vec4(posDes, 1.0);
 		vvvUv0 = vvUv0[i];
-		gl_Position = modelViewProjMat * vec4(posDes, 1.0);
-		gvertex = vec4(modelViewMat * vec4(posDes, 1.0));
+		vertexPosDes = vertexPosDes * yaw;
+		gl_Position = modelViewProjMat * vertexPosDes;
+		gvertex = vec4(modelViewMat * vertexPosDes);
 		normal = normalize(vec3(normalMat * vec4(vNormal[i], 0)));
 		EmitVertex();
 	}	

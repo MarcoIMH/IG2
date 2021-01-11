@@ -1,11 +1,11 @@
 ﻿  Boya.cpp
-D:\GitHub\IG2\OGREsdk\include\OGRE\OgreHardwareBuffer.h(180,58): warning C4251: 'Ogre::HardwareBuffer::mShadowBuffer': class 'std::unique_ptr<Ogre::HardwareBuffer,std::default_delete<Ogre::HardwareBuffer>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Ogre::HardwareBuffer'
-D:\GitHub\IG2\OGREsdk\include\OGRE\OgreHardwareBuffer.h(180): message : vea la declaración de 'std::unique_ptr<Ogre::HardwareBuffer,std::default_delete<Ogre::HardwareBuffer>>'
-D:\GitHub\IG2\IG2App\Boya.cpp(15,15): warning C4244: 'inicializando': conversión de 'double' a 'Ogre::Real'; posible pérdida de datos
+F:\CS UNIVERSIDAD\z.PROYECTOS\3º Ingenieria\IG2\Ogrevc15x86\IG2\OGREsdk\include\OGRE\OgreHardwareBuffer.h(180,58): warning C4251: 'Ogre::HardwareBuffer::mShadowBuffer': class 'std::unique_ptr<Ogre::HardwareBuffer,std::default_delete<Ogre::HardwareBuffer>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Ogre::HardwareBuffer'
+F:\CS UNIVERSIDAD\z.PROYECTOS\3º Ingenieria\IG2\Ogrevc15x86\IG2\OGREsdk\include\OGRE\OgreHardwareBuffer.h(180): message : vea la declaración de 'std::unique_ptr<Ogre::HardwareBuffer,std::default_delete<Ogre::HardwareBuffer>>'
+F:\CS UNIVERSIDAD\z.PROYECTOS\3º Ingenieria\IG2\Ogrevc15x86\IG2\IG2App\Boya.cpp(15,15): warning C4244: 'inicializando': conversión de 'double' a 'Ogre::Real'; posible pérdida de datos
   Generando código
-  1 of 765 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+  771 of 771 functions (100.0%) were compiled.
+    40 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
   Generación de código finalizada
-SDL2main.lib(SDL_windows_main.obj) : warning LNK4099: no se encontró PDB 'SDL2main.pdb' con 'SDL2main.lib(SDL_windows_main.obj)' o en 'D:\GitHub\IG2\bin\SDL2main.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-  IG2App.vcxproj -> D:\GitHub\IG2\bin\IG2AppRelease.exe
+SDL2main.lib(SDL_windows_main.obj) : warning LNK4099: no se encontró PDB 'SDL2main.pdb' con 'SDL2main.lib(SDL_windows_main.obj)' o en 'F:\CS UNIVERSIDAD\z.PROYECTOS\3º Ingenieria\IG2\Ogrevc15x86\IG2\bin\SDL2main.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+  IG2App.vcxproj -> F:\CS UNIVERSIDAD\z.PROYECTOS\3º Ingenieria\IG2\Ogrevc15x86\IG2\bin\IG2AppRelease.exe

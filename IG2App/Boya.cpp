@@ -31,8 +31,8 @@ Boya::Boya(SceneNode* mNode) : EntidadIG(mNode)
 	animacionBoya->setRotationInterpolationMode(Ogre::Animation::RIM_SPHERICAL);
 
 	es_Vaiven = mSM->createAnimationState("AnimVV");
-	es_Vaiven->setEnabled(true);
-	es_Vaiven->setLoop(true);
+	es_Vaiven->setEnabled(false);
+	es_Vaiven->setLoop(false);
 
 	explotaGS = false;
 

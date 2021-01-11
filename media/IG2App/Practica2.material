@@ -270,6 +270,7 @@ geometry_program Explota2GS glsl{
 		param_named_auto tiempo time
 		param_named_auto modelViewMat worldview_matrix
 		param_named_auto normalMat inverse_transpose_worldview_matrix
+		param_named_auto angulo time_0_2pi 32
 	}
 }
 
