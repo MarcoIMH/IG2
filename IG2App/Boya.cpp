@@ -48,7 +48,7 @@ bool Boya::keyPressed(const OgreBites::KeyboardEvent& evnt)
 {
 	if (evnt.keysym.sym == SDLK_r) {
 		if (!explotaGS)
-			boyaEntity->setMaterialName("IG2/ExplotaGS");
+			boyaEntity->setMaterialName("IG2/Explota2GS");
 		else
 			boyaEntity->setMaterialName("IG2/boya");
 		explotaGS = !explotaGS;
