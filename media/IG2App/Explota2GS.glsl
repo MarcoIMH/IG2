@@ -17,7 +17,7 @@ out vec3 normal;
 out vec4 gvertex;
 mat4 yaw;
 
-vec3 baricentro(vec3 vertex[3]){
+vec3 getBaricentro(vec3 vertex[3]){
 	return vec3((vertex[0] + vertex[1] + vertex[2]) / 3.0);
 }
 
@@ -31,25 +31,44 @@ void main() {
     yaw[2] = vec4(sin(angulo), 0, cos(angulo), 0);
     yaw[3] = vec4(0,0,0,1);
 
-	vec3 bar = baricentro(vertices);
-	vec3 dir = normalize(bar);
+    /////////////////////////////////////////
+    // Rotaciones -> vértices y normales ///
+    ///////////////////////////////////////
+    vec3 normalesRotadas[3] = vec3[](vec3(0.0,0.0,0.0), vec3(0.0,0.0,0.0), vec3(0.0,0.0,0.0));
 
+	for(int x = 0; x < 3; ++x){
+		vec4 verticeRotado = vec4(vertices[x], 1.0) * yaw;
+		vertices[x] = vec3(verticeRotado);
+
+		normalesRotadas[x] = vec3(normalMat * (vec4(vNormal[x], 0.0) * yaw));
+	}
+
+	vec3 baricentro = getBaricentro(vertices);
+	vec3 direccionAumento = normalize(baricentro);
+
+    /////////////////////////////////////////
+    // Escalar explosión -> vértices ///////
+    ///////////////////////////////////////
 	for(int i = 0; i < 3; ++i){
-		//-----Escala-------------
-		vec3 escalaDir = normalize(vertices[i] - bar);
-		//-----Aumento tamaño------
-		vec3 posDes = vertices[i] + (dir * VD * tiempo) + (escalaDir * scaleFact * tiempo);
-		vec4 vertexPosDes = vec4(posDes, 1.0);
-		vec4 normalDes = vec4(vNormal[i], 0);
+		vec3 direccionEscala = normalize(vertices[i] - baricentro); 
+
+		vertices[i] = vertices[i] + (direccionAumento * VD * tiempo) + (direccionEscala * scaleFact * tiempo);		
+	}	
+
+
+    /////////////////////////////////////////
+    // Outs de cada vértice ////////////////
+    ///////////////////////////////////////
+	for(int i = 0; i < 3; ++i){
+		gl_Position = modelViewProjMat  * vec4(vertices[i], 1.0);
+		gvertex = vec4(modelViewProjMat * vec4(vertices[i], 1.0));
+
 		vvvUv0 = vvUv0[i];
-		vertexPosDes = vertexPosDes * yaw;
-		gl_Position = modelViewProjMat * vertexPosDes;
-		gvertex = vec4(modelViewProjMat * vertexPosDes);
-		normalDes = normalDes * yaw;
-		normal = normalize(vec3(normalMat * normalDes));
+
+		normal = normalize(normalesRotadas[i]);
 
 		EmitVertex();
-	}	
+	}
 	EndPrimitive();
 }
 

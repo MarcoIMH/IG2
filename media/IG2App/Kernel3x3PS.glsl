@@ -26,8 +26,9 @@ void main() {
 
 	for(int x=0; x<9; x++){	   
 		vec2 result = vUv0 + incUV[x];
-		if(result.s <= 1)
-	      color+= vec3(texture(RTT0, vUv0 + incUV[x])) * kernel[x];
+
+		//if((result.s <= 1 && result.s >= 0) && (result.t <=1 && result.t >= 0))
+	      color+= vec3(texture(RTT0, result)) * kernel[x];
 	}
 
 	fFragColor = vec4(color, 1.0);
